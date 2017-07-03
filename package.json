@@ -1,5 +1,7 @@
 {
   "name": "react-mixer",
+  "description": "audio mixer build on React",
+  "version": "0.0.1",
   "devDependencies": {
     "webpack": ">= 3.0.0"
   }
