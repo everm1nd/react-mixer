@@ -14,7 +14,7 @@
     "react-dom": "^15.6.1"
   },
   "scripts": {
-    "dev": "webpack -d --watch",
+    "watch": "webpack -d --watch",
     "build" : "webpack -p"
   }
 }
