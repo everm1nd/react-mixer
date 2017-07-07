@@ -1,4 +1,4 @@
-## REACT MIXER
+## REACT MIXER 🎧🎚🎛
 
 #### INSTALLATION
 
