@@ -1,0 +1,9 @@
+.slider-container {
+  display: inline;
+}
+
+.slider-container input[type=range] {
+  width: 20px;
+  height: 200px;
+  -webkit-appearance: slider-vertical;
+}
