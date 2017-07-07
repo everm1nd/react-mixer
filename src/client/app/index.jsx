@@ -8,6 +8,7 @@ class App extends React.Component {
       <div>
         <p>React Mixer</p>
         <Slider />
+        <Slider default_position="50" />
       </div>
     );
   }
