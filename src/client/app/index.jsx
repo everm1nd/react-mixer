@@ -7,8 +7,8 @@ class App extends React.Component {
     return (
       <div>
         <p>React Mixer</p>
-        <Channel />
-        <Channel volume="50" />
+        <Channel sound="rain.wav"/>
+        <Channel volume="50" sound="birds.wav"/>
       </div>
     );
   }
