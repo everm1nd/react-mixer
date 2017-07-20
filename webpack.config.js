@@ -8,6 +8,7 @@ var config = {
   entry: APP_DIR + '/index.jsx',
   output: {
     path: BUILD_DIR,
+    publicPath: "/public/",
     filename: 'bundle.js'
   },
   module : {
@@ -18,6 +19,9 @@ var config = {
         loader : 'babel-loader'
       }
     ]
+  },
+  devServer: {
+    contentBase: 'src/client/'
   }
 };
 
