@@ -15,7 +15,7 @@ const playSound = (path, volume = DEFAULT_VOLUME) => {
   return sound;
 }
 
-const onChange = (sound) => (volume) => {
+const onVolumeChange = (sound) => (volume) => {
   sound.volume(volume);
 };
 
@@ -32,7 +32,7 @@ class Channel extends React.Component {
 
   render() {
     return (
-      <Slider position={this.state.volume} onChange={onChange(this.state.sound)} />
+      <Slider position={this.state.volume} onChange={onVolumeChange(this.state.sound)} />
     );
   }
 
