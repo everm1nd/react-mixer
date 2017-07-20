@@ -3,7 +3,10 @@ import { Howl } from 'howler';
 import Slider from './Slider.jsx';
 
 const playSound = (path) => {
-  const sound = new Howl({ src: './assets/sounds/' + path, buffer: true });
+  const sound = new Howl({
+    src: './assets/sounds/' + path,
+    loop: true
+  });
   sound.play();
   console.log('Playing sound', path);
 }
