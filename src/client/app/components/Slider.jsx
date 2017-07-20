@@ -3,10 +3,8 @@ import React from 'react';
 class Slider extends React.Component {
 
   constructor(props) {
-    const DEFAULT_POSITION = 80;
-
     super(props);
-    this.state = { position: props.default_position || DEFAULT_POSITION };
+    this.state = { position: props.position };
     this.onChange = this.onChange.bind(this);
   }
 
