@@ -1,6 +1,7 @@
 import React from 'react';
 import { Howl } from 'howler';
 import Slider from './Slider.jsx';
+import SoundSelector from './SoundSelector.jsx';
 
 const DEFAULT_VOLUME = 80;
 
@@ -46,10 +47,7 @@ class Channel extends React.Component {
     return (
       <div>
         <Slider position={this.state.volume} onChange={onVolumeChange(this.state.sound)} />
-        <select value={this.state.path} onChange={this.onSoundChange}>
-          <option value="birds.wav">Brids</option>
-          <option value="rain.wav">Rain</option>
-        </select>
+        <SoundSelector sound={this.state.path} onSoundChange={this.onSoundChange} />
       </div>
     );
   }
