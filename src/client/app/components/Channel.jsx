@@ -5,6 +5,7 @@ import SoundSelector from './SoundSelector.jsx';
 import LoopButton from './LoopButton.jsx';
 
 const DEFAULT_VOLUME = 80;
+const LOOP_AUTORESTART = true;
 
 const playSound = (path, volume = DEFAULT_VOLUME) => {
   const sound = new Howl({
@@ -47,8 +48,9 @@ class Channel extends React.Component {
 
   toogleLoop() {
     const sound = this.state.sound;
-    console.log('Looping:', sound.loop());
     sound.loop(!sound.loop());
+    console.log('Looping:', sound.loop());
+    if (sound.loop() && !sound.playing() && LOOP_AUTORESTART) sound.play();
   }
 
   render() {
