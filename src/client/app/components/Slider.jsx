@@ -17,7 +17,7 @@ class Slider extends React.Component {
     return (
       <div className="slider-container">
         <input className="vertical" type="range" onChange={this.onChange} value={this.state.position} />
-        <span>{this.state.position}</span>
+        <div className="value-display">{this.state.position}</div>
       </div>
     );
   }

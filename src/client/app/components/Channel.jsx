@@ -45,7 +45,7 @@ class Channel extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="channel">
         <Slider position={this.state.volume} onChange={onVolumeChange(this.state.sound)} />
         <SoundSelector sound={this.state.path} onSoundChange={this.onSoundChange} />
       </div>

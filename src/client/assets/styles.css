@@ -1,9 +1,35 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 300;
+	/*line-height: 26.4px;*/
+}
+
+.channel {
+  display: inline-block;
+  width: 75px;
+  height: 500px;
+  /*border: 1px solid #eee;*/
+}
+
 .slider-container {
-  display: inline;
+  display: block;
 }
 
 .slider-container input[type=range] {
+  display: block;
+  margin: 0 auto;
   width: 20px;
   height: 200px;
   -webkit-appearance: slider-vertical;
+}
+
+.slider-container .value-display {
+  text-align: center;
+  margin: 10px auto;
+}
+
+.sound-selector {
+  width: 90%;
 }
