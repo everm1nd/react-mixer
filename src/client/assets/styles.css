@@ -10,6 +10,7 @@ body {
   display: inline-block;
   width: 75px;
   height: 500px;
+  text-align: center;
   /*border: 1px solid #eee;*/
 }
 
@@ -32,4 +33,5 @@ body {
 
 .sound-selector {
   width: 90%;
+  margin-top: 10px;
 }

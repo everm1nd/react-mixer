@@ -2,6 +2,7 @@ import React from 'react';
 import { Howl } from 'howler';
 import Slider from './Slider.jsx';
 import SoundSelector from './SoundSelector.jsx';
+import LoopButton from './LoopButton.jsx';
 
 const DEFAULT_VOLUME = 80;
 
@@ -33,6 +34,7 @@ class Channel extends React.Component {
     };
 
     this.onSoundChange = this.onSoundChange.bind(this);
+    this.toogleLoop = this.toogleLoop.bind(this);
   }
 
   onSoundChange(event) {
@@ -43,10 +45,17 @@ class Channel extends React.Component {
     this.state.sound = playSound(path, this.state.volume);
   }
 
+  toogleLoop() {
+    const sound = this.state.sound;
+    console.log('Looping:', sound.loop());
+    sound.loop(!sound.loop());
+  }
+
   render() {
     return (
       <div className="channel">
         <Slider position={this.state.volume} onChange={onVolumeChange(this.state.sound)} />
+        <LoopButton onClick={this.toogleLoop} />
         <SoundSelector sound={this.state.path} onSoundChange={this.onSoundChange} />
       </div>
     );
