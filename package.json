@@ -3,6 +3,8 @@
   "description": "audio mixer build on React",
   "version": "0.0.1",
   "devDependencies": {
+    "chai": "^4.1.0",
+    "enzyme": "^2.9.1",
     "jsdom": "^11.1.0",
     "mocha": "^3.4.2",
     "react-addons-test-utils": "^15.6.0",
@@ -23,6 +25,8 @@
   "scripts": {
     "watch": "webpack -d --watch",
     "build": "webpack -p",
-    "serve": "webpack-dev-server"
+    "serve": "webpack-dev-server",
+    "test": "mocha test/helpers/browser.js test/*.spec.js",
+    "test:watch": "mocha -w test/helpers/browser.js test/*.spec.js"
   }
 }
