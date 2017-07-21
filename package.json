@@ -3,6 +3,9 @@
   "description": "audio mixer build on React",
   "version": "0.0.1",
   "devDependencies": {
+    "jsdom": "^11.1.0",
+    "mocha": "^3.4.2",
+    "react-addons-test-utils": "^15.6.0",
     "redux-devtools": "^3.4.0",
     "webpack": ">= 3.0.0"
   },
