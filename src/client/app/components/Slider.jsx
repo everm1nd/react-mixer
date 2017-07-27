@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Slider extends React.Component {
 
@@ -22,6 +23,10 @@ class Slider extends React.Component {
     );
   }
 
+}
+
+Slider.propTypes = {
+  position: PropTypes.number.isRequired
 }
 
 export default Slider;
