@@ -1,30 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Slider extends React.Component {
+const onChange = (props) => (event) => ( props.onChange(event.target.value / 100) );
+const renderValue = (volume) => ( Math.round(volume * 100) );
 
-  constructor(props) {
-    super(props);
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange(event) {
-    this.props.onChange(event.target.value / 100);
-  }
-
-  renderValue(volume) {
-    return Math.round(volume * 100);
-  }
-
-  render() {
-    return (
-      <div className="slider-container">
-        <input className="vertical" type="range" onChange={this.onChange} value={this.renderValue(this.props.position)} />
-        <div className="value-display">{this.renderValue(this.props.position)}</div>
-      </div>
-    );
-  }
-
+const Slider = (props) => {
+  return (
+    <div className="slider-container">
+      <input className="vertical" type="range" onChange={onChange(props)} value={renderValue(props.position)} />
+      <div className="value-display">{renderValue(props.position)}</div>
+    </div>
+  );
 }
 
 Slider.propTypes = {
