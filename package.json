@@ -7,6 +7,7 @@
     "enzyme": "^2.9.1",
     "jsdom": "^11.1.0",
     "mocha": "^3.4.2",
+    "proxyquire": "^1.8.0",
     "react-test-renderer": "^15.6.1",
     "redux-devtools": "^3.4.0",
     "webpack": ">= 3.0.0"
