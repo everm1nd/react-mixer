@@ -1,18 +1,20 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { expect } from 'chai';
 
 import Slider from '../src/client/app/components/Slider.jsx';
 
 describe('<Slider/>', function () {
-  const testFunction = () => { console.log('bam!') };
-  const wrapper = shallow(<Slider onChange={testFunction} />);
+  const onChangeSpy = sinon.spy();
+  const wrapper = shallow(<Slider onChange={onChangeSpy} />);
 
   it('renders one range input', function () {
     expect(wrapper.find('input[type="range"]')).to.have.length(1);
   });
 
-  it.skip('passes `onChange` prop to onChange of button', function () {
-    expect(wrapper.props().onChange).to.be.eql(testFunction);
+  it('calls `onChange` function when value changes', function () {
+    wrapper.find('input').simulate('change', {
+      target: { position: 0.6 } }
+    );
+    expect(onChangeSpy).to.have.been.called;
   });
 });
