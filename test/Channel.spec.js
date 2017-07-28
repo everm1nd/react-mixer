@@ -1,17 +1,17 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-describe('<Channel/>', function () {
-  let wrapper;
+const createHowlStub = () => {
+  let HowlStub = sinon.stub();
+  HowlStub.prototype.play = sinon.stub().returns(true);
+  return HowlStub;
+};
 
-  beforeEach(() => {
-    var HowlStub = sinon.stub();
-    HowlStub.prototype.play = sinon.stub().returns(true);
-    const Channel = proxyquire.noCallThru().load(process.cwd() + '/src/client/app/components/Channel.jsx',
-      { 'howler': { 'Howl': HowlStub } }
-    ).default;
-    wrapper = shallow(<Channel />);
-  })
+describe('<Channel/>', function () {
+  const Channel = proxyquire.noCallThru().load(process.cwd() + '/src/client/app/components/Channel.jsx',
+    { 'howler': { 'Howl': createHowlStub() } }
+  ).default;
+  const wrapper = shallow(<Channel />);
 
   it('renders one Slider', function () {
     expect(wrapper.find('Slider')).to.have.length(1);
