@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Howl } from 'howler';
 import Slider from './Slider.jsx';
 import SoundSelector from './SoundSelector.jsx';
@@ -65,6 +66,11 @@ class Channel extends React.Component {
     );
   }
 
+}
+
+Channel.propTypes = {
+  sound: PropTypes.string.isRequired,
+  volume: PropTypes.number
 }
 
 export default Channel;
