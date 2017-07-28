@@ -1,3 +1,4 @@
+require('./base');
 require("babel-register")();
 
 const { JSDOM } = require('jsdom');
