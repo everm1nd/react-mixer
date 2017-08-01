@@ -5,6 +5,7 @@ const createHowlStub = () => {
   let HowlStub = sinon.stub();
   HowlStub.prototype.play = sinon.stub().returns(true);
   HowlStub.prototype.unload = sinon.stub().returns(true);
+  HowlStub.prototype.volume = sinon.stub().returns(true);
   return HowlStub;
 };
 
@@ -50,5 +51,18 @@ describe('<Channel/>', function () {
     it('changes sound to a new one', function () {
       expect(wrapper.state().path).to.eql('birds.wav');
     })
+  });
+
+  context('when user changes volume', function() {
+    const wrapper = shallow(<Channel volume={0.6} />);
+    wrapper.find('Slider').props().onChange(0.85);
+
+    it('triggers volume change in sound object', function() {
+      expect(HowlStub.prototype.volume).to.have.been.called;
+    });
+
+    it('updates volume in Channel state', function() {
+      expect(wrapper.state().volume).to.eql(0.85);
+    });
   });
 });
