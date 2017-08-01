@@ -6,6 +6,8 @@ const createHowlStub = () => {
   HowlStub.prototype.play = sinon.stub().returns(true);
   HowlStub.prototype.unload = sinon.stub().returns(true);
   HowlStub.prototype.volume = sinon.stub().returns(true);
+  HowlStub.prototype.loop = sinon.stub().returns(true);
+  HowlStub.prototype.playing = sinon.stub().returns(true);
   return HowlStub;
 };
 
@@ -63,6 +65,27 @@ describe('<Channel/>', function () {
 
     it('updates volume in Channel state', function() {
       expect(wrapper.state().volume).to.eql(0.85);
+    });
+  });
+
+  context('when user clicks on Loop button', function() {
+    const wrapper = shallow(<Channel volume={0.6} />);
+    const clickLoopButton = () => { wrapper.find('LoopButton').props().onClick() };
+
+    it('toogles sound loop', function() {
+      // loop was active, then we click toogleLoop button
+      clickLoopButton();
+      expect(HowlStub.prototype.loop).to.have.been.calledWith(false);
+      // now let's mock it ask inactive and click it again
+      HowlStub.prototype.loop = sinon.stub().returns(false);
+      clickLoopButton();
+      expect(HowlStub.prototype.loop).to.have.been.calledWith(true);
+    });
+
+    it('restarts sound if it was not playing', function() {
+    });
+
+    it('does not restart sound if LOOP_AUTORESTART is false', function() {
     });
   });
 });
