@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Sound from '../models/Sound';
+
+const soundOptions = Sound.search().map((sound) =>
+  <option value={sound.path}>{sound.name}</option>
+);
+
 const SoundSelector = (props) => {
   return(<select className="sound-selector" value={props.sound} onChange={props.onSoundChange}>
-    <option value="birds.wav">Brids</option>
-    <option value="rain.wav">Rain</option>
+    {soundOptions}
   </select>);
 }
 
