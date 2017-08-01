@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import LoopButton from '../src/client/app/components/LoopButton.jsx';
+import LoopButton from '../../../src/client/app/components/LoopButton.jsx';
 
 describe('<LoopButton/>', function () {
   const testFunction = () => { console.log('bam!') };
