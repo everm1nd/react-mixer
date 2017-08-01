@@ -1,22 +1,28 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
+const resetHowlMethodStubs = (howlStub) => {
+  howlStub.prototype.play = sinon.stub().returns(true);
+  howlStub.prototype.unload = sinon.stub().returns(true);
+  howlStub.prototype.volume = sinon.stub().returns(true);
+  howlStub.prototype.loop = sinon.stub().returns(true);
+  howlStub.prototype.playing = sinon.stub().returns(true);
+}
+
 const createHowlStub = () => {
   let HowlStub = sinon.stub();
-  HowlStub.prototype.play = sinon.stub().returns(true);
-  HowlStub.prototype.unload = sinon.stub().returns(true);
-  HowlStub.prototype.volume = sinon.stub().returns(true);
-  HowlStub.prototype.loop = sinon.stub().returns(true);
-  HowlStub.prototype.playing = sinon.stub().returns(true);
+  resetHowlMethodStubs(HowlStub);
   return HowlStub;
 };
 
 describe('<Channel/>', function () {
-  const HowlStub = createHowlStub();
+  let HowlStub = createHowlStub();
   const Channel = proxyquire.noCallThru().load(process.cwd() + '/src/client/app/components/Channel.jsx',
     { 'howler': { 'Howl': HowlStub } }
   ).default;
   const wrapper = shallow(<Channel sound='sound.wav' volume={0.5} />);
+
+  beforeEach(() => { resetHowlMethodStubs(HowlStub) })
 
   it('renders one Slider', function () {
     expect(wrapper.find('Slider')).to.have.length(1);
@@ -44,7 +50,9 @@ describe('<Channel/>', function () {
 
   context('when user changes a sound', function () {
     const wrapper = shallow(<Channel sound='rain.wav' />);
-    wrapper.find('SoundSelector').props().onSoundChange({ target: { value: 'birds.wav' } });
+    beforeEach(() => {
+      wrapper.find('SoundSelector').props().onSoundChange({ target: { value: 'birds.wav' } });
+    })
 
     it('unloads an old sound', function() {
       expect(HowlStub.prototype.unload).to.have.been.called;
@@ -56,8 +64,9 @@ describe('<Channel/>', function () {
   });
 
   context('when user changes volume', function() {
-    const wrapper = shallow(<Channel volume={0.6} />);
-    wrapper.find('Slider').props().onChange(0.85);
+    beforeEach(() => {
+      wrapper.find('Slider').props().onChange(0.85);
+    });
 
     it('triggers volume change in sound object', function() {
       expect(HowlStub.prototype.volume).to.have.been.called;
@@ -69,7 +78,6 @@ describe('<Channel/>', function () {
   });
 
   context('when user clicks on Loop button', function() {
-    const wrapper = shallow(<Channel volume={0.6} />);
     const clickLoopButton = () => { wrapper.find('LoopButton').props().onClick() };
 
     it('toogles sound loop', function() {
@@ -83,9 +91,15 @@ describe('<Channel/>', function () {
     });
 
     it('restarts sound if it was not playing', function() {
+      HowlStub.prototype.playing = sinon.stub().returns(false);
+      clickLoopButton();
+      expect(HowlStub.prototype.play).to.have.been.called;
     });
 
-    it('does not restart sound if LOOP_AUTORESTART is false', function() {
+    it('does not restart sound if it was playing already', function() {
+      HowlStub.prototype.playing = sinon.stub().returns(true);
+      clickLoopButton();
+      expect(HowlStub.prototype.play).to.not.have.been.called;
     });
   });
 });
