@@ -38,7 +38,7 @@ class Channel extends React.Component {
 
   onSoundChange(event) {
     const path = event.target.value;
-    console.log(path);
+    console.log('Playing: ', path);
     this.state.sound.unload();
     this.setState({
       path,
