@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Channel from './Channel.jsx';
-import SearchField from './SearchField.jsx';
+import Channel from 'components/Channel';
+import SearchField from 'components/SearchField';
 
 const handleSearch = (event) => {
   console.log(event.target.value);
