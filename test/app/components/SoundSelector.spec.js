@@ -15,6 +15,12 @@ describe('<SoundSelector/>', function () {
     expect(optionValues).to.eql(Sound.search());
   });
 
+  it('renders keys for option elements', function () {
+    const optionKeys = wrapper.find('option').map((o) => o.key())
+    const soundPaths = Sound.search().map((sound) => sound.path)
+    expect(optionKeys).to.eql(soundPaths)
+  });
+
   it('passes `sound` prop to value of select', function () {
     expect(wrapper.props().value).to.be.eql('birds.wav');
   });

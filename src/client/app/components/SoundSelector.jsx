@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Sound from '../models/Sound';
 
 const soundOptions = Sound.search().map((sound) =>
-  <option value={sound.path}>{sound.name}</option>
+  <option key={sound.path} value={sound.path}>{sound.name}</option>
 );
 
 const SoundSelector = (props) => {
