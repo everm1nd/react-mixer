@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Channel from './components/Channel.jsx';
+import Channel from 'components/Channel';
 
 class App extends React.Component {
   render () {

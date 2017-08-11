@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Howl } from 'howler';
-import Slider from './Slider.jsx';
-import SoundSelector from './SoundSelector.jsx';
-import LoopButton from './LoopButton.jsx';
+import Slider from 'components/Slider';
+import SoundSelector from 'components/SoundSelector';
+import LoopButton from 'components/LoopButton';
 
 const DEFAULT_VOLUME = 0.8;
 const LOOP_AUTORESTART = true;

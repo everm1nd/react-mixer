@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Slider from '../../../src/client/app/components/Slider.jsx';
+import Slider from 'components/Slider';
 
 describe('<Slider/>', function () {
   const onChangeSpy = sinon.spy();

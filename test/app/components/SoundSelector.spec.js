@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Sound from '../../../src/client/app/models/Sound';
-import SoundSelector from '../../../src/client/app/components/SoundSelector.jsx';
+import Sound from 'models/Sound';
+import SoundSelector from 'components/SoundSelector';
 
 describe('<SoundSelector/>', function () {
   const testFunction = () => { console.log('bam!') };

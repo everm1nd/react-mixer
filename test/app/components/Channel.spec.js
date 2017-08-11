@@ -17,7 +17,7 @@ const createHowlStub = () => {
 
 describe('<Channel/>', function () {
   let HowlStub = createHowlStub();
-  const Channel = proxyquire.noCallThru().load(process.cwd() + '/src/client/app/components/Channel.jsx',
+  const Channel = proxyquire.noCallThru().load(process.cwd() + '/src/client/app/components/Channel',
     { 'howler': { 'Howl': HowlStub } }
   ).default;
   const wrapper = shallow(<Channel sound='sound.wav' volume={0.5} />);

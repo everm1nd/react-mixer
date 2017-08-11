@@ -1,4 +1,4 @@
-import Sound from '../../src/client/app/models/Sound.js';
+import Sound from 'models/Sound.js';
 
 describe('Sound', () => {
   describe('.search', () => {
