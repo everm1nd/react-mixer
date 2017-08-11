@@ -6,10 +6,13 @@ body {
 	/*line-height: 26.4px;*/
 }
 
+.channels {
+  margin-bottom: 20px;
+}
+
 .channel {
   display: inline-block;
   width: 75px;
-  height: 500px;
   text-align: center;
   /*border: 1px solid #eee;*/
 }
