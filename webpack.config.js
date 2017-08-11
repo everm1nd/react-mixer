@@ -11,6 +11,9 @@ var config = {
     publicPath: "/public/",
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module : {
     loaders : [
       {
