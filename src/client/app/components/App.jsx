@@ -2,6 +2,8 @@ import React from 'react';
 import {render} from 'react-dom';
 import Channel from 'components/Channel';
 import SearchField from 'components/SearchField';
+import SearchResults from 'components/SearchResults';
+import Sound from 'models/Sound';
 
 const handleSearch = (event) => {
   console.log(event.target.value);
@@ -18,6 +20,7 @@ class App extends React.Component {
         </div>
         <div>
           <SearchField onSearch={handleSearch}/>
+          <SearchResults sounds={Sound.search()}/>
         </div>
       </div>
     );
