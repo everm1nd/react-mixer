@@ -15,7 +15,7 @@ const playSound = (path, volume = DEFAULT_VOLUME) => {
     loop: true
   });
   sound.play();
-  console.log('Playing sound', path);
+  console.log('Playing:', path);
   return sound;
 }
 
@@ -38,7 +38,6 @@ class Channel extends React.Component {
 
   onSoundChange(event) {
     const path = event.target.value;
-    console.log('Playing: ', path);
     this.state.sound.unload();
     this.setState({
       path,
