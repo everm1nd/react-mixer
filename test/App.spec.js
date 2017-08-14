@@ -18,7 +18,19 @@ describe('<App/>', function () {
     expect(wrapper.find('SearchField')).to.have.length(1);
   });
 
-  it('pass handleSearch function to SearchField', function () {
-    expect(wrapper.find('SearchField').props().onSearch).to.eql(App.prototype.handleSearch);
+  it('renders SearchResults', function () {
+    expect(wrapper.find('SearchResults')).to.have.length(1);
   });
+
+  it('pass handleSearch function to SearchField', function () {
+    expect(wrapper.find('SearchField').props().onSearch).to.eql(wrapper.instance().handleSearch);
+  });
+
+  describe('.handleSearch', () => {
+    it('changes a query in state', () => {
+      const query = 'some sound name'
+      wrapper.instance().handleSearch({ target: { value: query } })
+      expect(wrapper.state()).to.include({ query })
+    })
+  })
 });
