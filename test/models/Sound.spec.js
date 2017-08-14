@@ -27,5 +27,10 @@ describe('Sound', () => {
       const doSearch = () => { Sound.search() }
       expect(doSearch).to.throw(Error, "Search query should be set");
     });
+
+    it('does not throw an error when query empty', () => {
+      const doSearch = () => { Sound.search('') }
+      expect(doSearch).to.not.throw(Error, "Search query should be set");
+    });
   });
 });

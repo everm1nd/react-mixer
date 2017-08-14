@@ -12,7 +12,7 @@ class Sound {
   }
 
   static search(query) {
-    if (!query) throw new Error("Search query should be set")
+    if (query === undefined) throw new Error("Search query should be set")
     return this.all().filter((sound) => sound.name.match(new RegExp(query, "i")))
   }
 }
