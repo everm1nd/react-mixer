@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Howl } from 'howler';
 import Slider from 'components/Slider';
-import SoundSelector from 'components/SoundSelector';
 import LoopButton from 'components/LoopButton';
 
 const DEFAULT_VOLUME = 0.8;
@@ -62,7 +61,6 @@ class Channel extends React.Component {
       <div className="channel">
         <Slider position={this.state.volume} onChange={this.onVolumeChange} />
         <LoopButton onClick={this.toogleLoop} />
-        <SoundSelector sound={this.state.path} onSoundChange={this.onSoundChange} />
       </div>
     );
   }
