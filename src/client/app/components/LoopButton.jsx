@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const LoopButton = (props) => {
-  return <input type="button" value="⟳" onClick={props.onClick} />;
+  return <div><input type="button" value="⟳" onClick={props.onClick} /></div>;
 }
 
 LoopButton.propTypes = {
