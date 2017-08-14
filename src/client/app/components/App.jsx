@@ -5,11 +5,11 @@ import SearchField from 'components/SearchField';
 import SearchResults from 'components/SearchResults';
 import Sound from 'models/Sound';
 
-const handleSearch = (event) => {
-  console.log(event.target.value);
-}
-
 class App extends React.Component {
+  handleSearch(event) {
+    return Sound.search(event.target.value);
+  }
+
   render () {
     return (
       <div>
@@ -19,7 +19,7 @@ class App extends React.Component {
           <Channel volume={0.5} sound="birds.wav"/>
         </div>
         <div>
-          <SearchField onSearch={handleSearch}/>
+          <SearchField onSearch={this.handleSearch}/>
           <SearchResults sounds={Sound.all()}/>
         </div>
       </div>

@@ -4,9 +4,6 @@ import { mount, shallow } from 'enzyme';
 import App from 'components/App';
 
 describe('<App/>', function () {
-  const handleSearchStub = () => {};
-  App.__Rewire__("handleSearch", handleSearchStub);
-
   const wrapper = shallow(<App />);
 
   it('renders a title', function () {
@@ -22,6 +19,6 @@ describe('<App/>', function () {
   });
 
   it('pass handleSearch function to SearchField', function () {
-    expect(wrapper.find('SearchField').props().onSearch).to.eql(handleSearchStub);
+    expect(wrapper.find('SearchField').props().onSearch).to.eql(App.prototype.handleSearch);
   });
 });

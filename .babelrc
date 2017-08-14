@@ -6,7 +6,6 @@
       "alias": {
         "test": "./test"
       }
-    }],
-    "rewire"
+    }]
   ]
 }
