@@ -5,10 +5,12 @@ class Sound {
   }
 
   static search(term) {
-    return [
+    const sounds = [
       new Sound({ name: 'Birds', path: 'birds.wav' }),
       new Sound({ name: 'Rain', path: 'rain.wav' })
     ];
+    if (term) return sounds.filter((sound) => sound.name.match(new RegExp(term, "i")))
+    return sounds;
   }
 }
 
