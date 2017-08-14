@@ -38,3 +38,15 @@ body {
   width: 90%;
   margin-top: 10px;
 }
+
+.search-field {
+  margin-bottom: 10px;
+}
+
+.search-result {
+  width: 300px;
+  border: 1px black solid;
+  margin: 0 10px 10px 0;
+  text-align: center;
+  padding: 20px 0;
+}

@@ -8,7 +8,7 @@ const handleKeyPressWith = (handler) => (event) => {
 }
 
 const SearchField = (props) => {
-  return <input onKeyPress={handleKeyPressWith(props.onSearch)} />;
+  return <input className="search-field" onKeyPress={handleKeyPressWith(props.onSearch)} />;
 }
 
 SearchField.propTypes = {
