@@ -4,13 +4,16 @@ class Sound {
     this.path = path
   }
 
-  static search(term) {
-    const sounds = [
+  static all() {
+    return [
       new Sound({ name: 'Birds', path: 'birds.wav' }),
       new Sound({ name: 'Rain', path: 'rain.wav' })
     ];
-    if (term) return sounds.filter((sound) => sound.name.match(new RegExp(term, "i")))
-    return sounds;
+  }
+
+  static search(query) {
+    if (!query) throw new Error("Search query should be set")
+    return this.all().filter((sound) => sound.name.match(new RegExp(query, "i")))
   }
 }
 

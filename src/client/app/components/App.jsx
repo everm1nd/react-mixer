@@ -20,7 +20,7 @@ class App extends React.Component {
         </div>
         <div>
           <SearchField onSearch={handleSearch}/>
-          <SearchResults sounds={Sound.search()}/>
+          <SearchResults sounds={Sound.all()}/>
         </div>
       </div>
     );

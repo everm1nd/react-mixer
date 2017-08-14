@@ -8,16 +8,16 @@ describe('<SoundSelector/>', function () {
   const testFunction = () => { console.log('bam!') };
   const wrapper = shallow(<SoundSelector sound="birds.wav" onSoundChange={testFunction} />);
 
-  it('renders all sounds returned by Sound.search()', function () {
+  it('renders all sounds returned by Sound.all()', function () {
     const optionValues = wrapper.find('option').map((o) => (
       { name: o.text(), path: o.props().value }
     ))
-    expect(optionValues).to.eql(Sound.search());
+    expect(optionValues).to.eql(Sound.all());
   });
 
   it('renders keys for option elements', function () {
     const optionKeys = wrapper.find('option').map((o) => o.key())
-    const soundPaths = Sound.search().map((sound) => sound.path)
+    const soundPaths = Sound.all().map((sound) => sound.path)
     expect(optionKeys).to.eql(soundPaths)
   });
 
