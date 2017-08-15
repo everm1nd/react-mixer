@@ -23,6 +23,7 @@ var config = {
       }
     ]
   },
+  devtool: "#inline-source-map",
   devServer: {
     contentBase: 'src/client/'
   }
