@@ -2,6 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import App from 'components/App';
+import Sound from 'models/Sound';
 
 describe('<App/>', function () {
   const wrapper = shallow(<App />);
@@ -10,8 +11,8 @@ describe('<App/>', function () {
     expect(wrapper.find('p').text()).to.eql('React Mixer');
   });
 
-  it('renders two channels', function () {
-    expect(wrapper.find('Channel')).to.have.length(2);
+  it('renders all sounds from Sound.all() as separate channels', function () {
+    expect(wrapper.find('Channel')).to.have.length(Sound.all().length);
   });
 
   it('renders a search field', function () {

@@ -20,13 +20,18 @@ class App extends React.Component {
     })
   }
 
+  channels() {
+    return Sound.all().map((sound, index) => (
+      <Channel key={index} id={index} sound={sound.path}/>
+    ))
+  }
+
   render () {
     return (
       <div>
         <p>React Mixer</p>
         <div className="channels">
-          <Channel sound="rain.wav"/>
-          <Channel volume={0.5} sound="birds.wav"/>
+          {this.channels()}
         </div>
         <div>
           <SearchField onSearch={this.handleSearch}/>

@@ -68,6 +68,7 @@ class Channel extends React.Component {
 }
 
 Channel.propTypes = {
+  id: PropTypes.number.isRequired,
   sound: PropTypes.string.isRequired,
   volume: PropTypes.number
 }
