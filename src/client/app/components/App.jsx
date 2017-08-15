@@ -36,16 +36,17 @@ class App extends React.Component {
   }
 
   render () {
+    const searchBlock = <div>
+      <SearchField onSearch={this.handleSearch}/>
+      <SearchResults sounds={Sound.search(this.state.query)}/>
+    </div>;
     return (
       <div>
         <p>React Mixer</p>
         <div className="channels">
           {this.channels()}
         </div>
-        <div>
-          <SearchField onSearch={this.handleSearch}/>
-          <SearchResults sounds={Sound.search(this.state.query)}/>
-        </div>
+        { this.state.inSwap != undefined ? searchBlock : null }
       </div>
     );
   }

@@ -15,18 +15,6 @@ describe('<App/>', function () {
     expect(wrapper.find('Channel')).to.have.length(Sound.all().length);
   });
 
-  it('renders a search field', function () {
-    expect(wrapper.find('SearchField')).to.have.length(1);
-  });
-
-  it('renders SearchResults', function () {
-    expect(wrapper.find('SearchResults')).to.have.length(1);
-  });
-
-  it('pass handleSearch function to SearchField', function () {
-    expect(wrapper.find('SearchField').props().onSearch).to.eql(wrapper.instance().handleSearch);
-  });
-
   describe('.handleSearch', () => {
     it('changes a query in state', () => {
       const query = 'some sound name'
@@ -57,6 +45,24 @@ describe('<App/>', function () {
       swapChannel(0)
       swapChannel(0)
       expect(wrapper.state().inSwap).to.eql(undefined)
+    })
+
+    it('does not render search block by default', () => {
+      expect(wrapper.find('SearchField')).to.have.length(0);
+      expect(wrapper.find('SearchResults')).to.have.length(0);
+    })
+
+    context('when in swap', () => {
+      it('shows search block', () => {
+        swapChannel(0)
+        expect(wrapper.find('SearchField')).to.have.length(1);
+        expect(wrapper.find('SearchResults')).to.have.length(1);
+      })
+
+      it('pass handleSearch function to SearchField', function () {
+        swapChannel(0)
+        expect(wrapper.find('SearchField').props().onSearch).to.eql(wrapper.instance().handleSearch);
+      })
     })
   })
 });
