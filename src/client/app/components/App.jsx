@@ -12,6 +12,7 @@ class App extends React.Component {
       query: ''
     }
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleSoundSwap = this.handleSoundSwap.bind(this);
   }
 
   handleSearch(event) {
@@ -20,9 +21,17 @@ class App extends React.Component {
     })
   }
 
+  handleSoundSwap(channel) {
+    return () => {
+      this.setState({
+        inSwap: this.state.inSwap == channel.props.id ? undefined : channel.props.id
+      })
+    }
+  }
+
   channels() {
     return Sound.all().map((sound, index) => (
-      <Channel key={index} id={index} sound={sound.path}/>
+      <Channel key={index} id={index} inSwap={index === this.state.inSwap} onSoundSwap={this.handleSoundSwap} sound={sound.path}/>
     ))
   }
 

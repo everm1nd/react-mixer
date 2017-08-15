@@ -20,7 +20,11 @@ describe('<Channel/>', function () {
   const Channel = proxyquire.noCallThru().load(process.cwd() + '/src/client/app/components/Channel',
     { 'howler': { 'Howl': HowlStub } }
   ).default;
-  const wrapper = shallow(<Channel sound='sound.wav' volume={0.5} />);
+  const onSoundSwapStub = () => () => ({});
+  const createChannelShallow = (props) => (
+    shallow(<Channel id={0} onSoundSwap={onSoundSwapStub} {...props} />)
+  );
+  const wrapper = createChannelShallow({ sound: 'sound.wav', volume: 0.5 })
 
   beforeEach(() => { resetHowlMethodStubs(HowlStub) })
 
@@ -40,12 +44,12 @@ describe('<Channel/>', function () {
   });
 
   it('sets volume to 0.8 if it is not set in constructor', function () {
-    const wrapper = shallow(<Channel sound='sound.wav' />);
+    const wrapper = createChannelShallow({ sound: 'sound.wav' });
     expect(wrapper.state().volume).to.eql(0.8);
   });
 
   context.skip('when user changes a sound', function () {
-    const wrapper = shallow(<Channel sound='rain.wav' />);
+    const wrapper = createChannelShallow({ sound: 'rain.wav' });
     beforeEach(() => {
       wrapper.find('SoundSelector').props().onSoundChange({ target: { value: 'birds.wav' } });
     })
@@ -98,4 +102,11 @@ describe('<Channel/>', function () {
       expect(HowlStub.prototype.play).to.not.have.been.called;
     });
   });
+
+  context('when in swap state', () => {
+    it('changes a background', () => {
+      const wrapper = createChannelShallow({ sound: 'sound.wav', volume: 0.5, inSwap: true })
+      expect(wrapper.find('.channel').props().style.backgroundColor).to.eql('#ffe0b2')
+    })
+  })
 });

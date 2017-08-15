@@ -5,7 +5,7 @@ import App from 'components/App';
 import Sound from 'models/Sound';
 
 describe('<App/>', function () {
-  const wrapper = shallow(<App />);
+  let wrapper = shallow(<App />);
 
   it('renders a title', function () {
     expect(wrapper.find('p').text()).to.eql('React Mixer');
@@ -32,6 +32,31 @@ describe('<App/>', function () {
       const query = 'some sound name'
       wrapper.instance().handleSearch({ target: { value: query } })
       expect(wrapper.state()).to.include({ query })
+    })
+  })
+
+  describe('.handleSoundSwap', () => {
+    beforeEach(() => { wrapper = shallow(<App />) });
+
+    const swapChannel = (id) => {
+      wrapper.instance().handleSoundSwap({ props: { id } })()
+    }
+
+    it('changes a inSwap in state', () => {
+      swapChannel(1)
+      expect(wrapper.state().inSwap).to.eql(1)
+    })
+
+    it('sets inSwap to a new channel if this was selected already', () => {
+      swapChannel(1)
+      swapChannel(0)
+      expect(wrapper.state().inSwap).to.eql(0)
+    })
+
+    it('sets inSwap to undefined if same channel received swap event again', () => {
+      swapChannel(0)
+      swapChannel(0)
+      expect(wrapper.state().inSwap).to.eql(undefined)
     })
   })
 });

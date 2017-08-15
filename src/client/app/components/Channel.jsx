@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Howl } from 'howler';
 import Slider from 'components/Slider';
 import LoopButton from 'components/LoopButton';
+import SoundSwap from 'components/SoundSwap';
 
 const DEFAULT_VOLUME = 0.8;
 const LOOP_AUTORESTART = true;
@@ -56,11 +57,19 @@ class Channel extends React.Component {
     if (sound.loop() && !sound.playing() && LOOP_AUTORESTART) sound.play();
   }
 
+  onSoundSwap(channel) {
+    return this.props.onSoundSwap(channel)
+  }
+
   render() {
+    const style = {
+      backgroundColor: this.props.inSwap ? '#ffe0b2' : 'white'
+    }
     return (
-      <div className="channel">
+      <div className="channel" style={style}>
         <Slider position={this.state.volume} onChange={this.onVolumeChange} />
         <LoopButton onClick={this.toogleLoop} />
+        <SoundSwap active={this.props.inSwap} onClick={this.onSoundSwap(this)} />
       </div>
     );
   }
@@ -70,7 +79,8 @@ class Channel extends React.Component {
 Channel.propTypes = {
   id: PropTypes.number.isRequired,
   sound: PropTypes.string.isRequired,
-  volume: PropTypes.number
+  volume: PropTypes.number,
+  onSoundSwap: PropTypes.func.isRequired
 }
 
 export default Channel;
