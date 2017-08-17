@@ -15,6 +15,10 @@ describe('<App/>', function () {
     expect(wrapper.find('Channel')).to.have.length(Sound.all().length);
   });
 
+  it('saves all available sounds to .sounds', () => {
+    expect(wrapper.state().sounds).to.eql(Sound.all())
+  })
+
   describe('.handleSearch', () => {
     it('changes a query in state', () => {
       const query = 'some sound name'

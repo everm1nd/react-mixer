@@ -9,7 +9,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: ''
+      query: '',
+      sounds: Sound.all()
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSoundSwap = this.handleSoundSwap.bind(this);
@@ -35,7 +36,7 @@ class App extends React.Component {
   }
 
   channels() {
-    return Sound.all().map((sound, index) => (
+    return this.state.sounds.map((sound, index) => (
       <Channel key={index} id={index} inSwap={index === this.state.inSwap} onSoundSwap={this.handleSoundSwap} sound={sound.path}/>
     ))
   }
