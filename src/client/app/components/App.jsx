@@ -30,8 +30,8 @@ class App extends React.Component {
     }
   }
 
-  handleSoundChangle(event) {
-    console.log(event)
+  handleSoundChangle(sound) {
+    console.log(sound)
   }
 
   channels() {
