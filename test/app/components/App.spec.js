@@ -13,17 +13,21 @@ describe('<App/>', function () {
     wrapper.instance().handleSoundSwap({ props: { id } })()
   }
 
-  it('renders a title', function () {
+  it('renders a title', () => {
     expect(wrapper.find('p').text()).to.eql('React Mixer');
   });
 
-  it('renders all sounds from Sound.all() as separate channels', function () {
+  it('renders all sounds from Sound.all() as separate channels', () => {
     expect(wrapper.find('Channel')).to.have.length(Sound.all().length);
+  });
+
+  it('assigns sounds to every channel', () => {
+    expect(wrapper.find('Channel').everyWhere(channel => channel.props().sound instanceof Sound)).to.eql(true)
   });
 
   it('saves all available sounds to .sounds', () => {
     expect(wrapper.state().sounds).to.eql(Sound.all())
-  })
+  });
 
   describe('.handleSearch', () => {
     it('changes a query in state', () => {

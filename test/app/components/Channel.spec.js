@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
+import Sound from 'models/Sound';
 
 const resetHowlMethodStubs = (howlStub) => {
   howlStub.prototype.play = sinon.stub().returns(true);
@@ -24,7 +25,8 @@ describe('<Channel/>', function () {
   const createChannelShallow = (props) => (
     shallow(<Channel id={0} onSoundSwap={onSoundSwapStub} {...props} />)
   );
-  const wrapper = createChannelShallow({ sound: 'sound.wav', volume: 0.5 })
+  const sound = new Sound({ name: 'Dog', path: 'dog.mp3' })
+  const wrapper = createChannelShallow({ sound, volume: 0.5 })
 
   beforeEach(() => { resetHowlMethodStubs(HowlStub) })
 
@@ -38,20 +40,21 @@ describe('<Channel/>', function () {
 
   it('gets initialized with correct state', function () {
     expect(wrapper.state()).to.include({
-      path: 'sound.wav',
+      sound,
       volume: 0.5
     });
   });
 
   it('sets volume to 0.8 if it is not set in constructor', function () {
-    const wrapper = createChannelShallow({ sound: 'sound.wav' });
+    const wrapper = createChannelShallow({ sound });
     expect(wrapper.state().volume).to.eql(0.8);
   });
 
   context('when user changes a sound', function () {
-    const wrapper = createChannelShallow({ sound: 'rain.wav' });
+    const wrapper = createChannelShallow({ sound });
+    const newSound = new Sound({ name: 'Cow', path: 'cow.mp3' })
     beforeEach(() => {
-      wrapper.setProps({ sound: 'birds.wav' })
+      wrapper.setProps({ sound: newSound })
     })
 
     it('unloads an old sound', function() {
@@ -59,7 +62,7 @@ describe('<Channel/>', function () {
     });
 
     it('changes sound to a new one', function () {
-      expect(wrapper.state().path).to.eql('birds.wav');
+      expect(wrapper.state().sound).to.eql(newSound);
     })
   });
 
@@ -105,7 +108,7 @@ describe('<Channel/>', function () {
 
   context('when in swap state', () => {
     it('changes a background', () => {
-      const wrapper = createChannelShallow({ sound: 'sound.wav', volume: 0.5, inSwap: true })
+      const wrapper = createChannelShallow({ sound, volume: 0.5, inSwap: true })
       expect(wrapper.find('.channel').props().style.backgroundColor).to.eql('#ffe0b2')
     })
   })

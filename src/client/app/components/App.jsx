@@ -42,7 +42,7 @@ class App extends React.Component {
 
   channels() {
     return this.state.sounds.map((sound, index) => (
-      <Channel key={index} id={index} inSwap={index === this.state.inSwap} onSoundSwap={this.handleSoundSwap} sound={sound.path}/>
+      <Channel key={index} id={index} inSwap={index === this.state.inSwap} onSoundSwap={this.handleSoundSwap} sound={sound}/>
     ))
   }
 

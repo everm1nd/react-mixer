@@ -8,15 +8,15 @@ import SoundSwap from 'components/SoundSwap';
 const DEFAULT_VOLUME = 0.8;
 const LOOP_AUTORESTART = true;
 
-const playSound = (path, volume = DEFAULT_VOLUME) => {
-  const sound = new Howl({
-    src: './assets/sounds/' + path,
+const playSound = (sound, volume = DEFAULT_VOLUME) => {
+  const player = new Howl({
+    src: './assets/sounds/' + sound.path,
     volume: volume,
     loop: true
   });
-  sound.play();
-  console.log('Playing:', path);
-  return sound;
+  player.play();
+  console.log('Playing:', sound.path);
+  return player;
 }
 
 class Channel extends React.Component {
@@ -24,11 +24,10 @@ class Channel extends React.Component {
   constructor(props) {
     super(props);
     const volume = props.volume || DEFAULT_VOLUME;
-    const path = props.sound;
     this.state = {
       volume: volume,
-      path: path,
-      sound: playSound(props.sound, volume)
+      sound: props.sound,
+      player: playSound(props.sound, volume)
     };
 
     this.onVolumeChange = this.onVolumeChange.bind(this);
@@ -36,26 +35,26 @@ class Channel extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const path = nextProps.sound
-    if (this.state.path != path) {
-      this.state.sound.unload();
+    const sound = nextProps.sound
+    if (this.state.sound != sound) {
+      this.state.player.unload();
       this.setState({
-        path,
-        sound: playSound(path, this.state.volume)
+        sound,
+        player: playSound(sound.path, this.state.volume)
       });
     }
   }
 
   onVolumeChange(volume) {
-    this.state.sound.volume(volume);
+    this.state.player.volume(volume);
     this.setState({ volume });
   }
 
   toogleLoop() {
-    const sound = this.state.sound;
-    sound.loop(!sound.loop());
-    console.log('Looping:', sound.loop());
-    if (sound.loop() && !sound.playing() && LOOP_AUTORESTART) sound.play();
+    const player = this.state.player;
+    player.loop(!player.loop());
+    console.log('Looping:', player.loop());
+    if (player.loop() && !player.playing() && LOOP_AUTORESTART) player.play();
   }
 
   onSoundSwap(channel) {
@@ -79,7 +78,7 @@ class Channel extends React.Component {
 
 Channel.propTypes = {
   id: PropTypes.number.isRequired,
-  sound: PropTypes.string.isRequired,
+  sound: PropTypes.object.isRequired,
   volume: PropTypes.number,
   onSoundSwap: PropTypes.func.isRequired
 }
