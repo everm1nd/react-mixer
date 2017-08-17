@@ -48,10 +48,10 @@ describe('<Channel/>', function () {
     expect(wrapper.state().volume).to.eql(0.8);
   });
 
-  context.skip('when user changes a sound', function () {
+  context('when user changes a sound', function () {
     const wrapper = createChannelShallow({ sound: 'rain.wav' });
     beforeEach(() => {
-      wrapper.find('SoundSelector').props().onSoundChange({ target: { value: 'birds.wav' } });
+      wrapper.setProps({ sound: 'birds.wav' })
     })
 
     it('unloads an old sound', function() {
