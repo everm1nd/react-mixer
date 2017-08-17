@@ -16,7 +16,8 @@ const SearchResults = (props) => {
 }
 
 SearchResults.propTypes = {
-  sounds: PropTypes.array.isRequired
+  sounds: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired
 }
 
 export default SearchResults;

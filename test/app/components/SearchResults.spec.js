@@ -10,7 +10,7 @@ describe('<SearchResults/>', function () {
     new Sound({ name: 'Dog', path: 'dog.mp3' })
   ];
 
-  const wrapper = shallow(<SearchResults sounds={sounds} />);
+  const wrapper = shallow(<SearchResults onSelect={()=>{}} sounds={sounds} />);
 
   it('renders all sounds in `sounds` prop', function () {
     const searchResultsValues = wrapper.find('.search-result').map((o) => (
