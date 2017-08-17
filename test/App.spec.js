@@ -53,15 +53,21 @@ describe('<App/>', function () {
     })
 
     context('when in swap', () => {
-      it('shows search block', () => {
+      beforeEach(() => {
         swapChannel(0)
+      })
+
+      it('shows search block', () => {
         expect(wrapper.find('SearchField')).to.have.length(1);
         expect(wrapper.find('SearchResults')).to.have.length(1);
       })
 
       it('pass handleSearch function to SearchField', function () {
-        swapChannel(0)
         expect(wrapper.find('SearchField').props().onSearch).to.eql(wrapper.instance().handleSearch);
+      })
+
+      it('assigns .handleSoundChangle to SearchResults', () => {
+        expect(wrapper.find('SearchResults').props().onSelect).to.eql(wrapper.instance().handleSoundChangle);
       })
     })
   })

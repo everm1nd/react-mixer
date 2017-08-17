@@ -13,6 +13,7 @@ class App extends React.Component {
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSoundSwap = this.handleSoundSwap.bind(this);
+    this.handleSoundChangle = this.handleSoundChangle.bind(this);
   }
 
   handleSearch(event) {
@@ -29,6 +30,10 @@ class App extends React.Component {
     }
   }
 
+  handleSoundChangle(event) {
+    console.log(event)
+  }
+
   channels() {
     return Sound.all().map((sound, index) => (
       <Channel key={index} id={index} inSwap={index === this.state.inSwap} onSoundSwap={this.handleSoundSwap} sound={sound.path}/>
@@ -38,7 +43,7 @@ class App extends React.Component {
   render () {
     const searchBlock = <div>
       <SearchField onSearch={this.handleSearch}/>
-      <SearchResults sounds={Sound.search(this.state.query)}/>
+      <SearchResults onSelect={this.handleSoundChangle} sounds={Sound.search(this.state.query)}/>
     </div>;
     return (
       <div>
