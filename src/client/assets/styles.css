@@ -3,7 +3,6 @@ body {
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 300;
-	/*line-height: 26.4px;*/
 }
 
 .buttons {
@@ -22,12 +21,7 @@ input[type='button'] {
   display: inline-block;
   width: 75px;
   text-align: center;
-  /*border: 1px solid #eee;*/
 }
-
-/*.channel .sound-name {
-  margin-top: 10px;
-}*/
 
 .slider-container {
   display: block;
