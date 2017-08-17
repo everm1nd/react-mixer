@@ -7,6 +7,12 @@ import Sound from 'models/Sound';
 describe('<App/>', function () {
   let wrapper = shallow(<App />);
 
+  beforeEach(() => { wrapper = shallow(<App />) });
+
+  const swapChannel = (id) => {
+    wrapper.instance().handleSoundSwap({ props: { id } })()
+  }
+
   it('renders a title', function () {
     expect(wrapper.find('p').text()).to.eql('React Mixer');
   });
@@ -28,12 +34,6 @@ describe('<App/>', function () {
   })
 
   describe('.handleSoundSwap', () => {
-    beforeEach(() => { wrapper = shallow(<App />) });
-
-    const swapChannel = (id) => {
-      wrapper.instance().handleSoundSwap({ props: { id } })()
-    }
-
     it('changes a inSwap in state', () => {
       swapChannel(1)
       expect(wrapper.state().inSwap).to.eql(1)
@@ -75,4 +75,14 @@ describe('<App/>', function () {
       })
     })
   })
+
+  describe('.handleSoundChange', () => {
+    it('updates state with sound received', () => {
+      const sound = new Sound({ name: 'Dog', path: 'dog.mp3' })
+
+      swapChannel(0)
+      wrapper.instance().handleSoundChangle(sound)
+      expect(wrapper.state().sounds[0]).to.eql(sound)
+    })
+  });
 });
