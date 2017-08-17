@@ -77,12 +77,21 @@ describe('<App/>', function () {
   })
 
   describe('.handleSoundChange', () => {
-    it('updates state with sound received', () => {
-      const sound = new Sound({ name: 'Dog', path: 'dog.mp3' })
+    const sound = new Sound({ name: 'Dog', path: 'dog.mp3' })
 
+    before(() => {
+      swapChannel(0)
+      wrapper.instance().handleSoundChangle(sound)
+    })
+
+    it('updates state with sound received', () => {
       swapChannel(0)
       wrapper.instance().handleSoundChangle(sound)
       expect(wrapper.state().sounds[0]).to.eql(sound)
+    })
+
+    it('resets inSwap state', () => {
+      expect(wrapper.state().inSwap).to.eql(undefined)
     })
   });
 });

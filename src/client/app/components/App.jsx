@@ -34,7 +34,10 @@ class App extends React.Component {
   handleSoundChangle(sound) {
     const sounds = this.state.sounds
     sounds[this.state.inSwap] = sound
-    this.setState({ sounds })
+    this.setState({
+      sounds,
+      inSwap: undefined
+    })
   }
 
   channels() {
