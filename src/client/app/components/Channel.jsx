@@ -36,11 +36,11 @@ class Channel extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const sound = nextProps.sound
-    if (this.state.sound != sound) {
+    if (this.state.sound.path != sound.path) {
       this.state.player.unload();
       this.setState({
         sound,
-        player: playSound(sound.path, this.state.volume)
+        player: playSound(sound, this.state.volume)
       });
     }
   }

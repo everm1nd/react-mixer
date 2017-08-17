@@ -70,6 +70,17 @@ describe('<Channel/>', () => {
     })
   });
 
+  context('when user selects the same sound', () => {
+    const wrapper = createChannelShallow({ sound });
+    beforeEach(() => {
+      wrapper.setProps({ sound })
+    })
+
+    it('doesn\'t unload the sound', () => {
+      expect(HowlStub.prototype.unload).to.not.have.been.called;
+    });
+  })
+
   context('when user changes volume', () => {
     beforeEach(() => {
       wrapper.find('Slider').props().onChange(0.85);
