@@ -17,6 +17,10 @@ body {
   /*border: 1px solid #eee;*/
 }
 
+.channel .sound-name {
+  margin-top: 10px;
+}
+
 .slider-container {
   display: block;
 }

@@ -70,6 +70,7 @@ class Channel extends React.Component {
         <Slider position={this.state.volume} onChange={this.onVolumeChange} />
         <LoopButton onClick={this.toogleLoop} />
         <SoundSwap active={this.props.inSwap} onClick={this.onSoundSwap(this)} />
+        <div className="sound-name">{this.state.sound.name}</div>
       </div>
     );
   }

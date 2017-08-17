@@ -16,7 +16,7 @@ const createHowlStub = () => {
   return HowlStub;
 };
 
-describe('<Channel/>', function () {
+describe('<Channel/>', () => {
   let HowlStub = createHowlStub();
   const Channel = proxyquire.noCallThru().load(process.cwd() + '/src/client/app/components/Channel',
     { 'howler': { 'Howl': HowlStub } }
@@ -30,60 +30,64 @@ describe('<Channel/>', function () {
 
   beforeEach(() => { resetHowlMethodStubs(HowlStub) })
 
-  it('renders one Slider', function () {
+  it('renders one Slider', () => {
     expect(wrapper.find('Slider')).to.have.length(1);
   });
 
-  it('renders one LoopButton', function () {
+  it('renders one LoopButton', () => {
     expect(wrapper.find('LoopButton')).to.have.length(1);
   });
 
-  it('gets initialized with correct state', function () {
+  it('renders name of the sound', () => {
+    expect(wrapper.find('.sound-name').text()).to.eql(wrapper.state().sound.name)
+  })
+
+  it('gets initialized with correct state', () => {
     expect(wrapper.state()).to.include({
       sound,
       volume: 0.5
     });
   });
 
-  it('sets volume to 0.8 if it is not set in constructor', function () {
+  it('sets volume to 0.8 if it is not set in constructor', () => {
     const wrapper = createChannelShallow({ sound });
     expect(wrapper.state().volume).to.eql(0.8);
   });
 
-  context('when user changes a sound', function () {
+  context('when user changes a sound', () => {
     const wrapper = createChannelShallow({ sound });
     const newSound = new Sound({ name: 'Cow', path: 'cow.mp3' })
     beforeEach(() => {
       wrapper.setProps({ sound: newSound })
     })
 
-    it('unloads an old sound', function() {
+    it('unloads an old sound', () => {
       expect(HowlStub.prototype.unload).to.have.been.called;
     });
 
-    it('changes sound to a new one', function () {
+    it('changes sound to a new one', () => {
       expect(wrapper.state().sound).to.eql(newSound);
     })
   });
 
-  context('when user changes volume', function() {
+  context('when user changes volume', () => {
     beforeEach(() => {
       wrapper.find('Slider').props().onChange(0.85);
     });
 
-    it('triggers volume change in sound object', function() {
+    it('triggers volume change in sound object', () => {
       expect(HowlStub.prototype.volume).to.have.been.called;
     });
 
-    it('updates volume in Channel state', function() {
+    it('updates volume in Channel state', () => {
       expect(wrapper.state().volume).to.eql(0.85);
     });
   });
 
-  context('when user clicks on Loop button', function() {
+  context('when user clicks on Loop button', () => {
     const clickLoopButton = () => { wrapper.find('LoopButton').props().onClick() };
 
-    it('toogles sound loop', function() {
+    it('toogles sound loop', () => {
       // loop was active, then we click toogleLoop button
       clickLoopButton();
       expect(HowlStub.prototype.loop).to.have.been.calledWith(false);
@@ -93,13 +97,13 @@ describe('<Channel/>', function () {
       expect(HowlStub.prototype.loop).to.have.been.calledWith(true);
     });
 
-    it('restarts sound if it was not playing', function() {
+    it('restarts sound if it was not playing', () => {
       HowlStub.prototype.playing = sinon.stub().returns(false);
       clickLoopButton();
       expect(HowlStub.prototype.play).to.have.been.called;
     });
 
-    it('does not restart sound if it was playing already', function() {
+    it('does not restart sound if it was playing already', () => {
       HowlStub.prototype.playing = sinon.stub().returns(true);
       clickLoopButton();
       expect(HowlStub.prototype.play).to.not.have.been.called;
