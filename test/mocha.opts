@@ -2,4 +2,5 @@
 --compilers js:babel-register
 --require jsdom-global/register
 --require test/helpers/browser.js
+--watch-extensions jsx
 test/**/*.spec.js
