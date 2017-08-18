@@ -1,4 +1,5 @@
 import axios from 'axios';
+import deepmerge from 'deepmerge';
 
 const baseUrl = 'http://freesound.org/apiv2'
 const globalToken = process.env.FREESOUND_API_KEY
@@ -13,16 +14,19 @@ class FreeSound {
     return `${baseUrl}/${resource}`
   }
 
-  search(query, fields = ['name', 'previews', 'download']) {
+  search(query, params = {}) {
     const resourceUrl = this.urlFor('search/text')
-    const params = {
+    const defaultParams = {
       params: {
-        token: this.token,
         query,
-        fields
+        token: this.token,
+        fields: ['name', 'previews', 'download']
       }
     }
-    return axios.get(resourceUrl, params)
+    const mergedParams = deepmerge(defaultParams, params, {
+      arrayMerge: (dest, source) => source
+    })
+    return axios.get(resourceUrl, mergedParams)
   }
 }
 

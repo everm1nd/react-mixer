@@ -3,7 +3,7 @@ const FreeSound = proxyquire.noCallThru().load(process.cwd() + '/src/client/app/
   { 'axios': { get: getStub } }
 ).default;
 
-describe.only('FreeSound', () => {
+describe('FreeSound', () => {
   const token = '1234567890'
   const adapter = new FreeSound({ token })
 
@@ -35,7 +35,7 @@ describe.only('FreeSound', () => {
         }
       }
       adapter.search('dog')
-      expect(getStub).to.have.been.calledWith(adapter.urlFor('search/text'), requestParams);
+      expect(getStub).to.have.been.calledWithMatch(adapter.urlFor('search/text'), requestParams);
     })
 
     it('changes fetched fields if they was passed as a second argument', () => {
@@ -47,8 +47,8 @@ describe.only('FreeSound', () => {
           fields
         }
       }
-      adapter.search('dog', fields)
-      expect(getStub).to.have.been.calledWith(adapter.urlFor('search/text'), requestParams);
+      adapter.search('dog', { params: { fields } })
+      expect(getStub).to.have.been.calledWithMatch(adapter.urlFor('search/text'), requestParams);
     })
   })
 });
