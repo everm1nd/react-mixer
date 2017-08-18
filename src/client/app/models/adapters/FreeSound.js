@@ -1,17 +1,17 @@
 import axios from 'axios';
 import deepmerge from 'deepmerge';
 
-const baseUrl = 'http://freesound.org/apiv2'
-const globalToken = process.env.FREESOUND_API_KEY
+const BASE_URL = 'http://freesound.org/apiv2'
+const GLOBAL_TOKEN = process.env.FREESOUND_API_KEY
 
 class FreeSound {
-  constructor({ token = globalToken }) {
+  constructor({ token = GLOBAL_TOKEN }) {
     this.token = token
   }
 
   urlFor(resource, params = {}) {
     params['token'] = this.token
-    return `${baseUrl}/${resource}/`
+    return `${BASE_URL}/${resource}/`
   }
 
   search(query, params = {}) {
