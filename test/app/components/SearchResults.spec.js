@@ -3,6 +3,7 @@ import { mount, shallow } from 'enzyme';
 
 import Sound from 'models/Sound';
 import SearchResults from 'components/SearchResults';
+import { renderDuration } from 'lib/time';
 
 describe('<SearchResults/>', function () {
   const sounds = [
@@ -21,7 +22,7 @@ describe('<SearchResults/>', function () {
     const sound = sounds[0]
 
     it('sound name and duration', () => {
-      expect(result.text()).to.eql(`${sound.name} (${sound.duration})`)
+      expect(result.text()).to.eql(`${sound.name} (${renderDuration(sound.duration)})`)
     })
   })
 

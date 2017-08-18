@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { renderDuration } from 'lib/time';
+
 class SearchResults extends React.Component {
   renderResult(sound) {
     return <div className="search-result" key={sound.path} data-path={sound.path}>
-      <a href='#' onClick={() => this.props.onSelect(sound)}>{sound.name} ({sound.duration})</a>
+      <a href='#' onClick={() => this.props.onSelect(sound)}>{sound.name} ({renderDuration(sound.duration)})</a>
     </div>
   }
 
