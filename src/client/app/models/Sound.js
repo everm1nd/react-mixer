@@ -3,15 +3,17 @@ import FreeSound from 'models/adapters/FreeSound'
 const adapter = new FreeSound({})
 
 class Sound {
-  constructor({ name, path }) {
+  constructor({ name, path, duration }) {
     this.name = name
     this.path = path
+    this.duration = duration
   }
 
   static fromFreesound(data) {
     return new Sound({
       name: data.name,
-      path: data.previews['preview-hq-ogg']
+      path: data.previews['preview-hq-ogg'],
+      duration: data.duration
     })
   }
 
