@@ -1,4 +1,4 @@
-import Sound from 'models/Sound.js';
+import Sound from 'models/Sound.js'
 
 describe('Sound', () => {
   describe('.all', () => {
@@ -12,15 +12,25 @@ describe('Sound', () => {
   });
 
   describe('.search', () => {
-    it('returns filtered output if term is set', () => {
-      const sounds = [
-        new Sound({ name: 'Cow', path: 'cow.mp3' }),
-        new Sound({ name: 'Dog', path: 'dog.mp3' })
-      ]
-      sinon.stub(Sound, "all").returns(sounds);
-      expect(Sound.search('co')).to.eql([
-        new Sound({ name: 'Cow', path: 'cow.mp3' })
-      ])
+    it('parses result from freesound.org and return an array of Sounds', (done) => {
+      const searchResults = {
+        data: {
+          results: [
+            { name: 'Dog', previews: { 'preview-hq-ogg': 'woof.ogg' } },
+            { name: 'Cat', previews: { 'preview-hq-ogg': 'meow.ogg' } }
+          ]
+        }
+      }
+      const adapterStub = {
+        search: (query) => sinon.stub().resolves(searchResults)()
+      }
+      Sound.__Rewire__('adapter', adapterStub)
+      Sound.search('dog').then((sounds) => {
+        expect(sounds).to.eql([
+          { name: 'Dog', path: 'woof.ogg' },
+          { name: 'Cat', path: 'meow.ogg' }
+        ])
+      }).then(done, done)
     });
 
     it('throws an error when query is not set', () => {

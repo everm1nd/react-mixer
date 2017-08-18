@@ -1,7 +1,18 @@
+import FreeSound from 'models/adapters/FreeSound'
+
+const adapter = new FreeSound({})
+
 class Sound {
   constructor({ name, path }) {
     this.name = name
     this.path = path
+  }
+
+  static fromFreesound(data) {
+    return new Sound({
+      name: data.name,
+      path: data.previews['preview-hq-ogg']
+    })
   }
 
   static all() {
@@ -13,7 +24,9 @@ class Sound {
 
   static search(query) {
     if (query === undefined) throw new Error("Search query should be set")
-    return this.all().filter((sound) => sound.name.match(new RegExp(query, "i")))
+    return adapter.search(query).then(
+      response => response.data.results.map(Sound.fromFreesound)
+    )
   }
 }
 

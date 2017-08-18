@@ -10,7 +10,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       query: '',
-      sounds: Sound.all()
+      sounds: Sound.all(),
+      foundSounds: []
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSoundSwap = this.handleSoundSwap.bind(this);
@@ -18,8 +19,9 @@ class App extends React.Component {
   }
 
   handleSearch(event) {
-    this.setState({
-      query: event.target.value
+    const query = event.target.value
+    return Sound.search(query).then((foundSounds) => {
+      this.setState({ foundSounds })
     })
   }
 
@@ -49,7 +51,7 @@ class App extends React.Component {
   render () {
     const searchBlock = <div>
       <SearchField onSearch={this.handleSearch}/>
-      <SearchResults onSelect={this.handleSoundChangle} sounds={Sound.search(this.state.query)}/>
+      <SearchResults onSelect={this.handleSoundChangle} sounds={this.state.foundSounds}/>
     </div>;
     return (
       <div>

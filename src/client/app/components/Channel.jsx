@@ -8,9 +8,11 @@ import SoundSwap from 'components/SoundSwap';
 const DEFAULT_VOLUME = 0.8;
 const LOOP_AUTORESTART = true;
 
+const normalizeUrl = (url) => url.match(/^https?:\/\//) ? url : `./assets/sounds/${url}`
+
 const playSound = (sound, volume = DEFAULT_VOLUME) => {
   const player = new Howl({
-    src: './assets/sounds/' + sound.path,
+    src: normalizeUrl(sound.path),
     volume: volume,
     loop: true
   });
