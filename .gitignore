@@ -2,3 +2,4 @@ node_modules/
 src/client/public/
 npm-debug.log
 yarn-error.log
+.env
