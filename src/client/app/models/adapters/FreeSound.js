@@ -11,7 +11,7 @@ class FreeSound {
 
   urlFor(resource, params = {}) {
     params['token'] = this.token
-    return `${baseUrl}/${resource}`
+    return `${baseUrl}/${resource}/`
   }
 
   search(query, params = {}) {
@@ -26,6 +26,7 @@ class FreeSound {
     const mergedParams = deepmerge(defaultParams, params, {
       arrayMerge: (dest, source) => source
     })
+    mergedParams.params.fields = mergedParams.params.fields.join(',')
     return axios.get(resourceUrl, mergedParams)
   }
 }

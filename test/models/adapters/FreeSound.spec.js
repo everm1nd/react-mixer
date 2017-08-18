@@ -21,7 +21,7 @@ describe('FreeSound', () => {
 
   describe('.urlFor', () => {
     it('returns url for FreeSound.org resource', () => {
-      expect(adapter.urlFor('some/resource')).to.eql(`http://freesound.org/apiv2/some/resource`)
+      expect(adapter.urlFor('some/resource')).to.eql(`http://freesound.org/apiv2/some/resource/`)
     })
   })
 
@@ -31,7 +31,7 @@ describe('FreeSound', () => {
         params: {
           token,
           query: 'dog',
-          fields: ['name', 'previews', 'download']
+          fields: ['name', 'previews', 'download'].join(',')
         }
       }
       adapter.search('dog')
@@ -44,7 +44,7 @@ describe('FreeSound', () => {
         params: {
           token,
           query: 'dog',
-          fields
+          fields: fields.join(',')
         }
       }
       adapter.search('dog', { params: { fields } })
