@@ -3,6 +3,7 @@ import deepmerge from 'deepmerge';
 
 const BASE_URL = 'http://freesound.org/apiv2'
 const GLOBAL_TOKEN = process.env.FREESOUND_API_KEY
+const EXPOSED_FIELDS = ['name', 'previews', 'download', 'duration']
 
 class FreeSound {
   constructor({ token = GLOBAL_TOKEN }) {
@@ -20,7 +21,7 @@ class FreeSound {
       params: {
         query,
         token: this.token,
-        fields: ['name', 'previews', 'download', 'duration']
+        fields: EXPOSED_FIELDS
       }
     }
     const mergedParams = deepmerge(defaultParams, params, {
