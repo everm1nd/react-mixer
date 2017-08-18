@@ -31,7 +31,7 @@ describe('FreeSound', () => {
         params: {
           token,
           query: 'dog',
-          fields: ['name', 'previews', 'download'].join(',')
+          fields: ['name', 'previews', 'download', 'duration'].join(',')
         }
       }
       adapter.search('dog')

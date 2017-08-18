@@ -20,7 +20,7 @@ class FreeSound {
       params: {
         query,
         token: this.token,
-        fields: ['name', 'previews', 'download']
+        fields: ['name', 'previews', 'download', 'duration']
       }
     }
     const mergedParams = deepmerge(defaultParams, params, {
