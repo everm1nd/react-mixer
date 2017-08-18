@@ -25,7 +25,9 @@ var config = {
     ]
   },
   plugins: [
-    new Dotenv()
+    new Dotenv({
+      safe: true
+    })
   ],
   devtool: "#inline-source-map",
   devServer: {
