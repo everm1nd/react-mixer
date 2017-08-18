@@ -8,23 +8,21 @@ class FreeSound {
     this.token = token
   }
 
-  renderParams(params) {
-    return Object.keys(params).map(function(key) {
-        return [key, params[key]].map(encodeURIComponent).join("=");
-    }).join("&");
-  }
-
   urlFor(resource, params = {}) {
     params['token'] = this.token
-    return `${baseUrl}/${resource}/?${this.renderParams(params)}`
+    return `${baseUrl}/${resource}`
   }
 
   search(query, fields = ['name', 'previews', 'download']) {
-    const resourceUrl = this.urlFor('search/text', {
-      query,
-      fields
-    })
-    return axios.get(resourceUrl)
+    const resourceUrl = this.urlFor('search/text')
+    const params = {
+      params: {
+        token: this.token,
+        query,
+        fields
+      }
+    }
+    return axios.get(resourceUrl, params)
   }
 }
 
