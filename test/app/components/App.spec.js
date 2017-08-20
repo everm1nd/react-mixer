@@ -104,8 +104,8 @@ describe('<App/>', function () {
         expect(wrapper.find('SearchField').props().onSearch).to.eql(wrapper.instance().handleSearch);
       })
 
-      it('assigns .handleSoundChangle to SearchResults', () => {
-        expect(wrapper.find('SearchResults').props().onSelect).to.eql(wrapper.instance().handleSoundChangle);
+      it('assigns .handleSoundChange to SearchResults', () => {
+        expect(wrapper.find('SearchResults').props().onSelect).to.eql(wrapper.instance().handleSoundChange);
       })
     })
   })
@@ -115,12 +115,12 @@ describe('<App/>', function () {
 
     before(() => {
       swapChannel(0)
-      wrapper.instance().handleSoundChangle(sound)
+      wrapper.instance().handleSoundChange(sound)
     })
 
     it('updates state with sound received', () => {
       swapChannel(0)
-      wrapper.instance().handleSoundChangle(sound)
+      wrapper.instance().handleSoundChange(sound)
       expect(wrapper.state().sounds[0]).to.eql(sound)
     })
 

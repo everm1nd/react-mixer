@@ -16,7 +16,7 @@ class App extends React.Component {
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSoundSwap = this.handleSoundSwap.bind(this);
-    this.handleSoundChangle = this.handleSoundChangle.bind(this);
+    this.handleSoundChange = this.handleSoundChange.bind(this);
   }
 
   handleSearch(event) {
@@ -34,7 +34,7 @@ class App extends React.Component {
     }
   }
 
-  handleSoundChangle(sound) {
+  handleSoundChange(sound) {
     const sounds = this.state.sounds
     sounds[this.state.inSwap] = sound
     this.setState({
@@ -53,7 +53,7 @@ class App extends React.Component {
     const newChannelId = this.state.sounds.length + 1
     const searchBlock = <div>
       <SearchField onSearch={this.handleSearch}/>
-      <SearchResults onSelect={this.handleSoundChangle} sounds={this.state.foundSounds}/>
+      <SearchResults onSelect={this.handleSoundChange} sounds={this.state.foundSounds}/>
     </div>;
     return (
       <div>
