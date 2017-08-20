@@ -4,6 +4,7 @@ import Channel from 'components/Channel';
 import SearchField from 'components/SearchField';
 import SearchResults from 'components/SearchResults';
 import Sound from 'models/Sound';
+import AddChannel from 'components/AddChannel';
 
 class App extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class App extends React.Component {
   }
 
   render () {
+    const newChannelId = this.state.sounds.length + 1
     const searchBlock = <div>
       <SearchField onSearch={this.handleSearch}/>
       <SearchResults onSelect={this.handleSoundChangle} sounds={this.state.foundSounds}/>
@@ -58,6 +60,7 @@ class App extends React.Component {
         <p>React Mixer</p>
         <div className="channels">
           {this.channels()}
+          <AddChannel id={newChannelId} onClick={this.handleSoundSwap} />
         </div>
         { this.state.inSwap != undefined ? searchBlock : null }
       </div>

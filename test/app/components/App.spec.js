@@ -33,6 +33,24 @@ describe('<App/>', function () {
     expect(wrapper.state().foundSounds).to.eql([])
   })
 
+  context('has AddChannel button', () => {
+    let addChannelButton;
+
+    beforeEach(() => { addChannelButton = wrapper.find('AddChannel') })
+
+    it('present', () => {
+      expect(addChannelButton).to.have.length(1)
+    })
+
+    it('with .handleSoundSwap as prop.onClick', () => {
+      expect(addChannelButton.props().onClick).to.eql(wrapper.instance().handleSoundSwap)
+    })
+
+    it('with new channel id as prop.id', () => {
+      expect(addChannelButton.props().id).to.eql(wrapper.state().sounds.length + 1)
+    })
+  })
+
   describe('.handleSearch', (done) => {
     it('changes a foundSounds in state', () => {
       const searchResults = [
