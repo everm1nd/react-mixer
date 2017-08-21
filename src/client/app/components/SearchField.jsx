@@ -7,8 +7,18 @@ const handleKeyPressWith = (handler) => (event) => {
   }
 }
 
-const SearchField = (props) => {
-  return <input className="search-field" onKeyPress={handleKeyPressWith(props.onSearch)} />;
+class SearchField extends React.Component {
+  componentDidMount() {
+    this.searchField.focus()
+  }
+
+  render() {
+    return <input
+      ref={(input) => { this.searchField = input; }}
+      className="search-field"
+      onKeyPress={handleKeyPressWith(this.props.onSearch)}
+    />
+  }
 }
 
 SearchField.propTypes = {
