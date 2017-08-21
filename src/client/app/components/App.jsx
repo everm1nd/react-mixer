@@ -77,7 +77,11 @@ class App extends React.Component {
         <p>React Mixer</p>
         <div className="channels">
           {this.channels()}
-          <AddChannel id={newChannelId} onClick={this.handleSoundSwap} />
+          <AddChannel
+            id={newChannelId}
+            inSwap={newChannelId === this.state.inSwap}
+            onClick={this.handleSoundSwap}
+          />
         </div>
         { this.state.inSwap != undefined ? searchBlock : null }
       </div>
