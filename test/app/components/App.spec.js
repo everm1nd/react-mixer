@@ -21,6 +21,10 @@ describe('<App/>', function () {
     expect(wrapper.find('Channel')).to.have.length(Sound.all().length);
   });
 
+  it('renders AddChannel button', () => {
+    expect(wrapper.find('AddChannel')).to.have.length(1);
+  })
+
   it('assigns sounds to every channel', () => {
     expect(wrapper.find('Channel').everyWhere(channel => channel.props().sound instanceof Sound)).to.eql(true)
   });
