@@ -17,6 +17,7 @@ class App extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSoundSwap = this.handleSoundSwap.bind(this);
     this.handleSoundChangle = this.handleSoundChangle.bind(this);
+    this.handleChannelDelete = this.handleChannelDelete.bind(this);
   }
 
   handleSearch(event) {
@@ -43,9 +44,25 @@ class App extends React.Component {
     })
   }
 
+  handleChannelDelete(channel) {
+    return () => {
+      this.state.sounds.splice(channel.props.id, 1)
+      this.setState({
+        sounds: this.state.sounds
+      })
+    }
+  }
+
   channels() {
     return this.state.sounds.map((sound, index) => (
-      <Channel key={index} id={index} inSwap={index === this.state.inSwap} onSoundSwap={this.handleSoundSwap} sound={sound}/>
+      <Channel
+        key={index}
+        id={index}
+        inSwap={index === this.state.inSwap}
+        onSoundSwap={this.handleSoundSwap}
+        onDelete={this.handleChannelDelete}
+        sound={sound}
+      />
     ))
   }
 
