@@ -4,6 +4,7 @@ import { Howl } from 'howler';
 import Slider from 'components/Slider';
 import LoopButton from 'components/LoopButton';
 import SoundSwap from 'components/SoundSwap';
+import DeleteChannel from 'components/DeleteChannel';
 
 const DEFAULT_VOLUME = 0.8;
 const LOOP_AUTORESTART = true;
@@ -47,6 +48,10 @@ class Channel extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.state.player.unload();
+  }
+
   onVolumeChange(volume) {
     this.state.player.volume(volume);
     this.setState({ volume });
@@ -73,6 +78,7 @@ class Channel extends React.Component {
         <div className="buttons">
           <LoopButton onClick={this.toogleLoop} />
           <SoundSwap active={this.props.inSwap} onClick={this.onSoundSwap(this)} />
+          <DeleteChannel onClick={this.props.onDelete(this)} />
         </div>
         <div className="sound-name">{this.state.sound.name}</div>
       </div>
@@ -85,7 +91,8 @@ Channel.propTypes = {
   id: PropTypes.number.isRequired,
   sound: PropTypes.object.isRequired,
   volume: PropTypes.number,
-  onSoundSwap: PropTypes.func.isRequired
+  onSoundSwap: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
 }
 
 export default Channel;

@@ -23,7 +23,7 @@ describe('<Channel/>', () => {
   ).default;
   const onSoundSwapStub = () => () => ({});
   const createChannelShallow = (props) => (
-    shallow(<Channel id={0} onSoundSwap={onSoundSwapStub} {...props} />)
+    shallow(<Channel id={0} onDelete={()=>{}} onSoundSwap={onSoundSwapStub} {...props} />)
   );
   const sound = new Sound({ name: 'Dog', path: 'dog.mp3' })
   const wrapper = createChannelShallow({ sound, volume: 0.5 })
@@ -36,6 +36,10 @@ describe('<Channel/>', () => {
 
   it('renders one LoopButton', () => {
     expect(wrapper.find('LoopButton')).to.have.length(1);
+  });
+
+  it('renders one DeleteChannel button', () => {
+    expect(wrapper.find('DeleteChannel')).to.have.length(1);
   });
 
   it('renders name of the sound', () => {
