@@ -1,11 +1,12 @@
-var webpack = require('webpack');
-var path = require('path');
-var Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
+const path = require('path');
+const Dotenv = require('dotenv-webpack');
+const addEnvConfigTo = require('./config/webpack/envResolver')
 
-var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
-var APP_DIR = path.resolve(__dirname, 'src/client/app');
+const BUILD_DIR = path.resolve(__dirname, './src/client/public');
+const APP_DIR = path.resolve(__dirname, './src/client/app');
 
-var config = {
+const commonConfig = {
   entry: APP_DIR + '/index.jsx',
   output: {
     path: BUILD_DIR,
@@ -28,12 +29,16 @@ var config = {
     new Dotenv({
       safe: true,
       systemvars: true
+    }),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development' // use 'development' unless process.env.NODE_ENV is defined
     })
   ],
-  devtool: "#inline-source-map",
   devServer: {
     contentBase: 'src/client/'
   }
 };
+
+const config = addEnvConfigTo(commonConfig)
 
 module.exports = config;
