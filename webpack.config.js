@@ -1,39 +1,20 @@
-var webpack = require('webpack');
-var path = require('path');
-var Dotenv = require('dotenv-webpack');
+const fs = require('fs')
+const path = require('path')
+const Merge = require('webpack-merge');
+const CommonConfig = require('./config/webpack/webpack.common')
 
-var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
-var APP_DIR = path.resolve(__dirname, 'src/client/app');
+const env = process.env.NODE_ENV || 'development'
+const envConfigPath = path.resolve(__dirname, `./config/webpack/webpack.${env}.js`);
 
-var config = {
-  entry: APP_DIR + '/index.jsx',
-  output: {
-    path: BUILD_DIR,
-    publicPath: "/public/",
-    filename: 'bundle.js'
-  },
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
-  module : {
-    loaders : [
-      {
-        test : /\.jsx?/,
-        include : APP_DIR,
-        loader : 'babel-loader'
-      }
-    ]
-  },
-  plugins: [
-    new Dotenv({
-      safe: true,
-      systemvars: true
-    })
-  ],
-  devtool: "#inline-source-map",
-  devServer: {
-    contentBase: 'src/client/'
-  }
-};
+let envSpecificConfig = {};
+
+if (fs.existsSync(envConfigPath)) {
+  console.log(`Using ${env} config for webpack.`)
+  envSpecificConfig = require(envConfigPath)
+} else {
+  console.log(`WARNING: Can't load webpack config for '${env}'. File ${envConfigPath} not found.`)
+}
+
+config = Merge(CommonConfig, envSpecificConfig)
 
 module.exports = config;
