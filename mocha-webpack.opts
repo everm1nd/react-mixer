@@ -1,0 +1,7 @@
+--colors
+--require babel-register
+--require test/helpers/howlerFixSetup.js
+--require jsdom-global/register
+--require test/helpers/browser.js
+--webpack-config webpack.config.js
+test/**/*.spec.js

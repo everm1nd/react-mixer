@@ -1,12 +1,22 @@
 const webpack = require('webpack');
-const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const addEnvConfigTo = require('./config/webpack/envResolver')
 
+const path = require('path');
 const BUILD_DIR = path.resolve(__dirname, './src/client/public');
 const APP_DIR = path.resolve(__dirname, './src/client/app');
 
-const commonConfig = {
+import nodeExternals from 'webpack-node-externals';
+
+export default {
+  target: 'node',
+  externals: [nodeExternals()],
+  entry: APP_DIR + '/index.jsx',
+  output: {
+    path: BUILD_DIR,
+    publicPath: "/public/",
+    filename: 'bundle.js'
+  },
   resolve: {
     extensions: ['.js', '.jsx']
   },
@@ -28,9 +38,3 @@ const commonConfig = {
     })
   ]
 };
-
-const config = addEnvConfigTo(commonConfig)
-
-console.log(config)
-
-export default config;
