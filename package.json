@@ -34,7 +34,7 @@
   },
   "scripts": {
     "watch": "webpack -d --watch",
-    "build": "webpack -p",
+    "build": "NODE_ENV=production webpack -p",
     "serve": "webpack-dev-server",
     "test": "mocha",
     "test:watch": "mocha -w"
