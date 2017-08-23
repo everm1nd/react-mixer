@@ -34,7 +34,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "scripts": {
-    "start": "NODE_ENV=production webpack -p && http-server ./src/client -p ${PORT:-8080}",
+    "start": "http-server ./src/client -p ${PORT:-8080}",
     "watch": "webpack -d --watch",
     "build": "NODE_ENV=production webpack -p",
     "serve": "webpack-dev-server",
