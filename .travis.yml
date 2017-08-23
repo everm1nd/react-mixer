@@ -4,3 +4,8 @@ cache:
   yarn: true
   directories:
     - node_modules
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: JW10WPuO8lHKtAlrhm/pPPQIMRoaWYsskn/SUQHWme+MVCtZ+LLF4Gcii/cFrhKDhbU5Jz1tgNSEdeNqk+9vcMzE/1s9Weg26UKkcnKYJQgHVFmEK7jID5GjIck09hSrm1UWsB6NTbedDxlaIU5v54zYBYBKJxSnrop4kCf99D2ZLslXWwBB8SPpKASTcWhV5tIWBxpCgSXTm9cjuLJpMk1BkAsPf3Aa0LIsIiRO5HwK3PhlstDbJdD4GCcHrdha0FVzhfkZ+7qMgShvwxj2E3Vs0j1ZbHfhJ2netf63aj5RtUhaujsIA/IBG3lNfr9abrgjdEq/hAQdKFC5+dOUhw9ff8hr/Ma0Kq9JIXxjiTTN4IrXUnMWvkhM0hwNpLYi9ItFVD3mcRcDIj+60D4OgywRAd/hm/aq+RnhmDDiWv4C10mSXEtSLasxo5SdkJK0lm4HwFpCrX94sq9fRRyXNV68FnsRF+Gkjyav3IUaL/+lZdUlm8A8bFC/TlgvHn/o3T8OyVDaBJjPplBhZ67vwI8a3qAeVP3F6tia65f5mh3S6CCX0auL2WadyCmAb96JS0Nsy09qKYtN9+fBk0Soc7G3BbFHHhlFhhh44scG0yr6uFq9bRnRHWO8o5vm4d+1fxao5oq1sO9K6/qrJnJtFABgh2fv5N2zA72Ed9XzXCw=
