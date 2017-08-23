@@ -2,7 +2,7 @@ import axios from 'axios';
 import deepmerge from 'deepmerge';
 
 const BASE_URL = 'http://freesound.org/apiv2'
-const GLOBAL_TOKEN = process.env.FREESOUND_API_KEY
+const GLOBAL_TOKEN = process.env.REACT_APP_FREESOUND_API_KEY
 const EXPOSED_FIELDS = ['name', 'previews', 'download', 'duration']
 
 class FreeSound {

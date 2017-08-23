@@ -10,7 +10,7 @@ describe('FreeSound', () => {
   describe('.constructor', () => {
     it('set token', () => {
       const adapter = new FreeSound({})
-      expect(adapter.token).to.be.eql(process.env.FREESOUND_API_KEY)
+      expect(adapter.token).to.be.eql(process.env.REACT_APP_FREESOUND_API_KEY)
     });
 
     it('change token to user-defined if it was passed in initialzier', () => {
