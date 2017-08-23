@@ -7,6 +7,7 @@
     "babel-plugin-rewire": "^1.1.0",
     "chai": "^4.1.0",
     "enzyme": "^2.9.1",
+    "http-server": "^0.10.0",
     "jsdom": "^11.1.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^3.4.2",
@@ -33,6 +34,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "scripts": {
+    "start": "NODE_ENV=production webpack -p && http-server ./src/client -p ${PORT:-8080}",
     "watch": "webpack -d --watch",
     "build": "NODE_ENV=production webpack -p",
     "serve": "webpack-dev-server",
