@@ -1,4 +1,4 @@
-import FreeSound from 'models/adapters/FreeSound'
+import FreeSound from "models/adapters/FreeSound"
 
 const adapter = new FreeSound({})
 
@@ -12,16 +12,16 @@ class Sound {
   static fromFreesound(data) {
     return new Sound({
       name: data.name,
-      path: data.previews['preview-hq-ogg'],
+      path: data.previews["preview-hq-ogg"],
       duration: data.duration
     })
   }
 
   static all() {
     return [
-      new Sound({ name: 'Birds', path: 'birds.wav' }),
-      new Sound({ name: 'Rain', path: 'rain.wav' })
-    ];
+      new Sound({ name: "Birds", path: "birds.wav" }),
+      new Sound({ name: "Rain", path: "rain.wav" })
+    ]
   }
 
   static search(query) {
@@ -32,4 +32,4 @@ class Sound {
   }
 }
 
-export default Sound;
+export default Sound

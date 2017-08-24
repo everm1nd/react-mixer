@@ -1,2 +1,2 @@
-let { HowlerGlobal } = require('howler')
-global.HowlerGlobal = HowlerGlobal;
+let { HowlerGlobal } = require("howler")
+global.HowlerGlobal = HowlerGlobal

@@ -1,34 +1,38 @@
-import React from 'react';
-import { mount, shallow } from 'enzyme';
+import React from "react"
+import { shallow } from "enzyme"
 
-import Sound from 'models/Sound';
-import SearchResults from 'components/SearchResults';
-import { renderDuration } from 'lib/time';
+import Sound from "models/Sound"
+import SearchResults from "components/SearchResults"
+import { renderDuration } from "lib/time"
 
-describe('<SearchResults/>', function () {
+describe("<SearchResults/>", function () {
   const sounds = [
-    new Sound({ name: 'Cow', path: 'cow.mp3', duration: 5.12 }),
-    new Sound({ name: 'Dog', path: 'dog.mp3', duration: 10 })
-  ];
+    new Sound({ name: "Cow", path: "cow.mp3", duration: 5.12 }),
+    new Sound({ name: "Dog", path: "dog.mp3", duration: 10 })
+  ]
 
-  const wrapper = shallow(<SearchResults onSelect={()=>{}} sounds={sounds} />);
+  const wrapper = shallow(
+    <SearchResults
+        onSelect={()=>{}}
+        sounds={sounds}
+    />)
 
-  it('renders all sounds in `sounds` prop', function () {
-    expect(wrapper.find('.search-result')).to.have.length(sounds.length);
-  });
+  it("renders all sounds in `sounds` prop", function () {
+    expect(wrapper.find(".search-result")).to.have.length(sounds.length)
+  })
 
-  context('renders single result with proper values', () => {
-    const result = wrapper.find('.search-result').first()
+  context("renders single result with proper values", () => {
+    const result = wrapper.find(".search-result").first()
     const sound = sounds[0]
 
-    it('sound name and duration', () => {
+    it("sound name and duration", () => {
       expect(result.text()).to.eql(`${sound.name} (${renderDuration(sound.duration)})`)
     })
   })
 
-  it('renders keys for option elements', function () {
-    const searchResultsKeys = wrapper.find('.search-result').map((o) => o.key())
+  it("renders keys for option elements", function () {
+    const searchResultsKeys = wrapper.find(".search-result").map((o) => o.key())
     const soundPaths = sounds.map((sound) => sound.path)
     expect(searchResultsKeys).to.eql(soundPaths)
-  });
-});
+  })
+})
