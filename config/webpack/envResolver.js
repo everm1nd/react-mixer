@@ -1,12 +1,12 @@
-const fs = require('fs')
-const path = require('path')
-const Merge = require('webpack-merge');
+const fs = require("fs")
+const path = require("path")
+const Merge = require("webpack-merge")
 
 const addEnvConfigTo = (commonConfig) => {
-  const env = process.env.NODE_ENV || 'development'
-  const envConfigPath = path.resolve(__dirname, `./webpack.${env}.js`);
+  const env = process.env.NODE_ENV || "development"
+  const envConfigPath = path.resolve(__dirname, `./webpack.${env}.js`)
 
-  let envSpecificConfig = {};
+  let envSpecificConfig = {}
 
   if (fs.existsSync(envConfigPath)) {
     console.log(`Using ${env} config for webpack.`)
@@ -18,4 +18,4 @@ const addEnvConfigTo = (commonConfig) => {
   return Merge(commonConfig, envSpecificConfig)
 }
 
-module.exports = addEnvConfigTo;
+module.exports = addEnvConfigTo

@@ -1,13 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react"
+import PropTypes from "prop-types"
+import Sound from "models/Sound"
 
-import { renderDuration } from 'lib/time';
+import { renderDuration } from "lib/time"
 
 class SearchResults extends React.Component {
   renderResult(sound) {
-    return <div className="search-result" key={sound.path} data-path={sound.path}>
-      <a href='#' onClick={() => this.props.onSelect(sound)}>{sound.name} ({renderDuration(sound.duration)})</a>
-    </div>
+    return (
+      <div className="search-result" data-path={sound.path} key={sound.path}>
+        <a href='#' onClick={() => this.props.onSelect(sound)}>
+          {sound.name} ({renderDuration(sound.duration)})
+        </a>
+      </div>)
   }
 
   renderResults(sounds) {
@@ -19,13 +23,13 @@ class SearchResults extends React.Component {
       <div className="search-results">
         {this.renderResults(this.props.sounds)}
       </div>
-    );
+    )
   }
 }
 
 SearchResults.propTypes = {
-  sounds: PropTypes.array.isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
+  sounds: PropTypes.arrayOf(Sound).isRequired
 }
 
-export default SearchResults;
+export default SearchResults

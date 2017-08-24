@@ -1,12 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react"
+import PropTypes from "prop-types"
 
 const LoopButton = (props) => {
-  return <div><input type="button" value="⟳" onClick={props.onClick} /></div>;
+  return (
+    <div>
+      <input
+          onClick={props.onClick}
+          type="button"
+          value="⟳"
+      />
+    </div>)
 }
 
 LoopButton.propTypes = {
   onClick: PropTypes.func.isRequired
 }
 
-export default LoopButton;
+export default LoopButton
