@@ -21,7 +21,7 @@ describe('FreeSound', () => {
 
   describe('.urlFor', () => {
     it('returns url for FreeSound.org resource', () => {
-      expect(adapter.urlFor('some/resource')).to.eql(`http://freesound.org/apiv2/some/resource/`)
+      expect(adapter.urlFor('some/resource')).to.eql(`https://freesound.org/apiv2/some/resource/`)
     })
   })
 
