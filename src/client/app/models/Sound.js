@@ -3,17 +3,19 @@ import FreeSound from "models/adapters/FreeSound"
 const adapter = new FreeSound({})
 
 class Sound {
-  constructor({ name, path, duration }) {
+  constructor({ name, path, duration, waveform }) {
     this.name = name
     this.path = path
     this.duration = duration
+    this.waveform = waveform
   }
 
   static fromFreesound(data) {
     return new Sound({
       name: data.name,
       path: data.previews["preview-hq-ogg"],
-      duration: data.duration
+      duration: data.duration,
+      waveform: data.images["waveform_m"]
     })
   }
 

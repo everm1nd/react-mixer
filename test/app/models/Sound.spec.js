@@ -16,8 +16,17 @@ describe("Sound", () => {
       const searchResults = {
         data: {
           results: [
-            { name: "Dog", previews: { "preview-hq-ogg": "woof.ogg" }, duration: 10 },
-            { name: "Cat", previews: { "preview-hq-ogg": "meow.ogg" }, duration: 15 }
+            {
+              name: "Dog",
+              previews: { "preview-hq-ogg": "woof.ogg" },
+              duration: 10, images: { "waveform_m": "woof.jpg" }
+            },
+            {
+              name: "Cat",
+              previews: { "preview-hq-ogg": "meow.ogg" },
+              duration: 15,
+              images: { "waveform_m": "meow.jpg" }
+            }
           ]
         }
       }
@@ -27,8 +36,8 @@ describe("Sound", () => {
       Sound.__Rewire__("adapter", adapterStub)
       Sound.search("dog").then((sounds) => {
         expect(sounds).to.eql([
-          { name: "Dog", path: "woof.ogg", duration: 10 },
-          { name: "Cat", path: "meow.ogg", duration: 15 }
+          { name: "Dog", path: "woof.ogg", duration: 10, waveform: "woof.jpg" },
+          { name: "Cat", path: "meow.ogg", duration: 15, waveform: "meow.jpg" }
         ])
       }).then(done, done)
     })
