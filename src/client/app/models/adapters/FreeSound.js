@@ -3,7 +3,7 @@ import deepmerge from "deepmerge"
 
 const BASE_URL = "https://freesound.org/apiv2"
 const GLOBAL_TOKEN = process.env.REACT_APP_FREESOUND_API_KEY
-const EXPOSED_FIELDS = ["name", "previews", "download", "duration"]
+const EXPOSED_FIELDS = ["name", "previews", "download", "duration", "images"]
 
 class FreeSound {
   constructor({ token = GLOBAL_TOKEN }) {
