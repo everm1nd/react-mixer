@@ -8,9 +8,14 @@ class SearchResults extends React.Component {
   renderResult(sound) {
     return (
       <div className="search-result" data-path={sound.path} key={sound.path}>
-        <a href='#' onClick={() => this.props.onSelect(sound)}>
-          {sound.name} ({renderDuration(sound.duration)})
-        </a>
+        <div className="info">
+          <div className="wrapper">
+            <a href='#' onClick={() => this.props.onSelect(sound)}>
+              {sound.name} ({renderDuration(sound.duration)})
+            </a>
+          </div>
+        </div>
+        <img className="waveform" src={sound.waveform} />
       </div>)
   }
 

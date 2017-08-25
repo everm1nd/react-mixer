@@ -45,9 +45,30 @@ input[type='button'] {
 }
 
 .search-result {
-  width: 300px;
-  border: 1px black solid;
+  width: 400px;
+  height: 70px;
+  border: 1px #ddd solid;
   margin: 0 10px 10px 0;
-  text-align: center;
-  padding: 20px 0;
+}
+
+.search-result .info {
+  overflow: hidden;
+  height: 100%;
+  width: 70%;
+  display: inline-block;
+}
+
+.search-result .info a {
+  font-size: 14px;
+  font-weight: bolder;
+  color: #444;
+}
+
+.search-result .info .wrapper {
+  padding: 10px;
+}
+
+.search-result img.waveform {
+  height: 100%;
+  width: 30%;
 }
