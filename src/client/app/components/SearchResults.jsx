@@ -11,8 +11,9 @@ class SearchResults extends React.Component {
         <div className="info">
           <div className="wrapper">
             <a href='#' onClick={() => this.props.onSelect(sound)}>
-              {sound.name} ({renderDuration(sound.duration)})
+              {sound.name}
             </a>
+            <p className="description">{renderDuration(sound.duration)}</p>
           </div>
         </div>
         <img className="waveform" src={sound.waveform} />

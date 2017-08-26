@@ -25,8 +25,12 @@ describe("<SearchResults/>", function () {
     const result = wrapper.find(".search-result").first()
     const sound = sounds[0]
 
-    it("sound name and duration", () => {
-      expect(result.text()).to.eql(`${sound.name} (${renderDuration(sound.duration)})`)
+    it("sound name", () => {
+      expect(result.find("a").text()).to.eql(sound.name)
+    })
+
+    it("duration", () => {
+      expect(result.find("p").text()).to.eql(renderDuration(sound.duration))
     })
   })
 

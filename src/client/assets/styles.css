@@ -82,6 +82,10 @@ input[type='button'] {
   padding: 10px;
 }
 
+.search-result .info .description {
+  font-size: 14px;
+}
+
 .search-result img.waveform {
   height: 100%;
   width: 30%;
