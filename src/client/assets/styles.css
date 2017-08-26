@@ -63,6 +63,7 @@ input[type='button'] {
   height: 70px;
   border: 1px #ddd solid;
   margin: 0 10px 10px 0;
+  cursor: pointer;
 }
 
 .search-result .info {
@@ -72,9 +73,9 @@ input[type='button'] {
   display: inline-block;
 }
 
-.search-result .info a {
+.search-result .info h5 {
   font-size: 14px;
-  font-weight: bolder;
+  margin: 0;
   color: #444;
 }
 

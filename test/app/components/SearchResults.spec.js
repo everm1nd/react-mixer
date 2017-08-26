@@ -26,7 +26,7 @@ describe("<SearchResults/>", function () {
     const sound = sounds[0]
 
     it("sound name", () => {
-      expect(result.find("a").text()).to.eql(sound.name)
+      expect(result.find("h5").text()).to.eql(sound.name)
     })
 
     it("duration", () => {

@@ -7,12 +7,13 @@ import { renderDuration } from "lib/time"
 class SearchResults extends React.Component {
   renderResult(sound) {
     return (
-      <div className="search-result" data-path={sound.path} key={sound.path}>
+      <div
+          className="search-result" data-path={sound.path} key={sound.path}
+          onClick={() => this.props.onSelect(sound)}
+      >
         <div className="info">
           <div className="wrapper">
-            <a href='#' onClick={() => this.props.onSelect(sound)}>
-              {sound.name}
-            </a>
+            <h5>{sound.name}</h5>
             <p className="description">{renderDuration(sound.duration)}</p>
           </div>
         </div>
