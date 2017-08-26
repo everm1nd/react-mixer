@@ -17,6 +17,7 @@ class SearchField extends React.Component {
       <input
           className="search-field"
           onKeyPress={handleKeyPressWith(this.props.onSearch)}
+          placeholder="type sound name and press enter..."
           ref={(input) => { this.searchField = input }}
       />)
   }
