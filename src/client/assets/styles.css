@@ -18,9 +18,19 @@ input[type='button'] {
 }
 
 .channel {
+  padding: 10px 0;
   display: inline-block;
   width: 75px;
   text-align: center;
+  vertical-align: top;
+}
+
+.channel.new {
+  vertical-align: middle !important;
+}
+
+.channel.new input {
+  margin: 156px 0;
 }
 
 .slider-container {

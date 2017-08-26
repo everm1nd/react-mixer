@@ -6,7 +6,7 @@ const AddChannel = (props) => {
     backgroundColor: props.inSwap ? "#ffe0b2" : "white"
   }
   return (
-    <div className="channel" style={style}>
+    <div className="channel new" style={style}>
       <input
           onClick={props.onClick({ props })}
           type="button"
