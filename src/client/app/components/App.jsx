@@ -67,7 +67,7 @@ class App extends React.Component {
   render () {
     const newChannelId = this.state.sounds.length + 1
     const searchBlock = (
-      <div>
+      <div className="search-box">
         <SearchField onSearch={this.handleSearch} />
         <SearchResults
             onSelect={this.handleSoundChange}

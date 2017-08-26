@@ -40,12 +40,26 @@ input[type='button'] {
   margin: 10px auto;
 }
 
+.search-box {
+  padding: 10px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 400px;
+  overflow-y: scroll;
+  max-height: 100%;
+}
+
 .search-field {
   margin-bottom: 10px;
+  width: 100%;
+  height: 30px;
+  font-size: 14px;
+  padding: 9px;
 }
 
 .search-result {
-  width: 400px;
+  width: 100%;
   height: 70px;
   border: 1px #ddd solid;
   margin: 0 10px 10px 0;
