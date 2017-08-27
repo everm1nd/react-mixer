@@ -33,6 +33,11 @@ input[type='button'] {
   margin: 156px 0;
 }
 
+.channel .sound-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .slider-container {
   display: block;
 }
