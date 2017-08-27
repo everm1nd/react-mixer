@@ -132,4 +132,17 @@ describe("<App/>", function () {
       expect(wrapper.state().inSwap).to.eql(undefined)
     })
   })
+
+  describe(".handleKeyDown", () => {
+    it("resets inSwap state when ESCAPE is pressed", () => {
+      swapChannel(0)
+      expect(wrapper.state().inSwap).to.eql(0)
+      wrapper.simulate("keyDown", {
+        key: "Escape",
+        keyCode: 27,
+        which: 27
+      })
+      expect(wrapper.state().inSwap).to.be.undefined
+    })
+  })
 })

@@ -16,6 +16,7 @@ class App extends React.Component {
     this.handleSoundSwap = this.handleSoundSwap.bind(this)
     this.handleSoundChange = this.handleSoundChange.bind(this)
     this.handleChannelDelete = this.handleChannelDelete.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
   }
 
   handleSearch(event) {
@@ -64,6 +65,14 @@ class App extends React.Component {
     ))
   }
 
+  handleKeyDown(event) {
+    if (event.key === "Escape") {
+      this.setState({
+        inSwap: undefined
+      })
+    }
+  }
+
   render () {
     const newChannelId = this.state.sounds.length + 1
     const searchBlock = (
@@ -75,7 +84,7 @@ class App extends React.Component {
         />
       </div>)
     return (
-      <div>
+      <div onKeyDown={this.handleKeyDown} tabIndex="0">
         <p>React Mixer</p>
         <div className="channels">
           {this.channels()}
