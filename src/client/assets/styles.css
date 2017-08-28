@@ -17,6 +17,10 @@ input[type='button'] {
   margin-bottom: 20px;
 }
 
+.channels.in-swap {
+  width: 75%;
+}
+
 .channel {
   padding: 10px 0;
   display: inline-block;
@@ -60,7 +64,7 @@ input[type='button'] {
   position: fixed;
   right: 0;
   top: 0;
-  width: 400px;
+  width: 25%;
   overflow-y: scroll;
   max-height: 100%;
   background: white;

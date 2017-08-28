@@ -1,4 +1,5 @@
 import React from "react"
+import classNames from "classnames"
 import Channel from "components/Channel"
 import SearchField from "components/SearchField"
 import SearchResults from "components/SearchResults"
@@ -86,7 +87,7 @@ class App extends React.Component {
     return (
       <div onKeyDown={this.handleKeyDown} tabIndex="0">
         <p>React Mixer</p>
-        <div className="channels">
+        <div className={classNames("channels", { "in-swap": this.state.inSwap })}>
           {this.channels()}
           <AddChannel
               id={newChannelId}
