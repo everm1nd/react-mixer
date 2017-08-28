@@ -63,6 +63,8 @@ input[type='button'] {
   width: 400px;
   overflow-y: scroll;
   max-height: 100%;
+  background: white;
+  height: 100%;
 }
 
 .search-field {
