@@ -15,6 +15,8 @@ input[type='button'] {
 
 .channels {
   margin-bottom: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .channels.in-swap {
@@ -40,6 +42,7 @@ input[type='button'] {
 .channel .sound-name {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .slider-container {
