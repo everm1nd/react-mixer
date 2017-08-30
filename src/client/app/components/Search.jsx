@@ -24,7 +24,7 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div className="search-box">
+      <div className="search">
         <SearchField onSearch={this.handleSearch} />
         <SearchResults
             onSelect={this.props.onSelect}
