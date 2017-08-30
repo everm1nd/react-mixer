@@ -1,7 +1,7 @@
 import React from "react"
 import { shallow } from "enzyme"
 
-import SearchField from "../../../src/client/app/components/SearchField.jsx"
+import SearchField from "components/SearchField"
 
 describe("<SearchField/>", () => {
   const searchStub = sinon.stub()
