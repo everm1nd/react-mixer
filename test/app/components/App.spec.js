@@ -33,10 +33,6 @@ describe("<App/>", function () {
     expect(wrapper.state().sounds).to.eql(Sound.all())
   })
 
-  it("initializes with empty foundSounds state", () => {
-    expect(wrapper.state().foundSounds).to.eql([])
-  })
-
   context("has AddChannel button", () => {
     let addChannelButton
 
@@ -52,22 +48,6 @@ describe("<App/>", function () {
 
     it("with new channel id as prop.id", () => {
       expect(addChannelButton.props().id).to.eql(wrapper.state().sounds.length + 1)
-    })
-  })
-
-  describe(".handleSearch", (done) => {
-    it("changes a foundSounds in state", () => {
-      const searchResults = [
-        new Sound({ name: "Little Dog", path: "wif.ogg" }),
-        new Sound({ name: "Big Dog", path: "wooooooooof.ogg" })
-      ]
-      const promiseStub = sinon.stub().resolves(searchResults)()
-      const searchStub = sinon.stub(Sound, "search").returns(promiseStub)
-
-      wrapper.instance().handleSearch({ target: { value: "dogs" } }).then(() => {
-        expect(wrapper.state()).to.include({ foundSounds: searchResults })
-        searchStub.restore()
-      }).then(done, done)
     })
   })
 
@@ -90,8 +70,7 @@ describe("<App/>", function () {
     })
 
     it("does not render search block by default", () => {
-      expect(wrapper.find("SearchField")).to.have.length(0)
-      expect(wrapper.find("SearchResults")).to.have.length(0)
+      expect(wrapper.find("Search")).to.have.length(0)
     })
 
     context("when in swap", () => {
@@ -100,16 +79,7 @@ describe("<App/>", function () {
       })
 
       it("shows search block", () => {
-        expect(wrapper.find("SearchField")).to.have.length(1)
-        expect(wrapper.find("SearchResults")).to.have.length(1)
-      })
-
-      it("pass handleSearch function to SearchField", function () {
-        expect(wrapper.find("SearchField").props().onSearch).to.eql(wrapper.instance().handleSearch)
-      })
-
-      it("assigns .handleSoundChange to SearchResults", () => {
-        expect(wrapper.find("SearchResults").props().onSelect).to.eql(wrapper.instance().handleSoundChange)
+        expect(wrapper.find("Search")).to.have.length(1)
       })
     })
   })
