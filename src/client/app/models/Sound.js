@@ -26,9 +26,9 @@ class Sound {
     ]
   }
 
-  static search(query) {
+  static search(query, params = {}) {
     if (query === undefined) throw new Error("Search query should be set")
-    return adapter.search(query).then(
+    return adapter.search(query, params).then(
       response => response.data.results.map(Sound.fromFreesound)
     )
   }
