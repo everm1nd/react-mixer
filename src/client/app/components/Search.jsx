@@ -15,6 +15,7 @@ class Search extends React.Component {
       foundSounds: []
     }
     this.handleSearch = this.handleSearch.bind(this)
+    this.handlePageChange = this.handlePageChange.bind(this)
   }
 
   handleSearch(event) {
@@ -24,11 +25,16 @@ class Search extends React.Component {
     })
   }
 
+  handlePageChange(data) {
+    console.log("page", data.selected + 1)
+  }
+
   render() {
     return (
       <div className="search">
         <SearchField onSearch={this.handleSearch} />
         <SearchResults
+            onPageChange={this.handlePageChange}
             onSelect={this.props.onSelect}
             sounds={this.state.foundSounds}
         />
