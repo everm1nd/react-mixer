@@ -35,7 +35,7 @@ describe("<Search/>", () => {
     expect(wrapper.find("SearchField").props().onSearch).to.eql(wrapper.instance().handleSearch)
   })
 
-  it("assigns .handleSoundChange to SearchResults", () => {
+  it("pass onSelect prop function to SearchResults", () => {
     expect(wrapper.find("SearchResults").props().onSelect).not.to.be.undefined
     expect(wrapper.find("SearchResults").props().onSelect).to.eql(wrapper.instance().props.onSelect)
   })
