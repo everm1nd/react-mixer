@@ -119,3 +119,24 @@ input[type='button'] {
   height: 100%;
   width: 30%;
 }
+
+.pagination {
+  padding: 0;
+  text-align: center;
+}
+
+.pagination ul {
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.pagination li {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.pagination .break a {
+    cursor: default;
+}
