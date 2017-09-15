@@ -10,6 +10,8 @@ class Search extends React.Component {
   constructor() {
     super()
     this.state = {
+      query: "",
+      page: 1,
       foundSounds: []
     }
     this.handleSearch = this.handleSearch.bind(this)

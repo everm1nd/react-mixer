@@ -18,6 +18,14 @@ describe("<Search/>", () => {
     expect(wrapper.find("SearchResults")).to.have.length(1)
   })
 
+  it("initializes with empty query state", () => {
+    expect(wrapper.state().query).to.eql("")
+  })
+
+  it("initializes with page state equal 1", () => {
+    expect(wrapper.state().page).to.eql(1)
+  })
+
   it("initializes with empty foundSounds state", () => {
     expect(wrapper.state().foundSounds).to.eql([])
   })
