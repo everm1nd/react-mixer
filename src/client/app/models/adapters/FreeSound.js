@@ -24,7 +24,7 @@ class FreeSound {
         fields: EXPOSED_FIELDS
       }
     }
-    const mergedParams = deepmerge(defaultParams, params, {
+    const mergedParams = deepmerge(defaultParams, { params }, {
       arrayMerge: (dest, source) => source
     })
     mergedParams.params.fields = mergedParams.params.fields.join(",")

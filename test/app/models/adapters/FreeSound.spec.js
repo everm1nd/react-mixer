@@ -47,7 +47,7 @@ describe("FreeSound", () => {
           fields: fields.join(",")
         }
       }
-      adapter.search("dog", { params: { fields } })
+      adapter.search("dog", { fields })
       expect(getStub).to.have.been.calledWithMatch(adapter.urlFor("search/text"), requestParams)
     })
   })
