@@ -23,7 +23,7 @@ class Search extends React.Component {
     const params = {
       page: this.state.page
     }
-    Sound.search(query, params).then((foundSounds) => {
+    return Sound.search(query, params).then((foundSounds) => {
       this.setState({ foundSounds })
     })
   }

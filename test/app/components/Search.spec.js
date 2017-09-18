@@ -79,4 +79,33 @@ describe("<Search/>", () => {
       })
     })
   })
+
+  describe(".updateSearchResults", (done) => {
+    let searchStub
+    const foundSounds = [ new Sound({ name: "Dog Barks" }) ]
+
+    beforeEach(() => {
+      searchStub = sinon.stub(Sound, "search").resolves(foundSounds)
+      wrapper.setState({
+        page: 5,
+        query: "cats"
+      })
+    })
+
+    afterEach(() => {
+      searchStub.restore()
+    })
+
+    it("search for sounds with Sound model", (done) => {
+      wrapper.instance().updateSearchResults().then(() => {
+        expect(searchStub).to.have.been.calledWith("cats", { page: 5 })
+      }).then(done, done)
+    })
+
+    it("sets found sound in state.foundSounds", (done) => {
+      wrapper.instance().updateSearchResults().then(() => {
+        expect(wrapper.state().foundSounds).to.eql(foundSounds)
+      }).then(done, done)
+    })
+  })
 })
