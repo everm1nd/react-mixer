@@ -60,4 +60,25 @@ describe("<Search/>", () => {
       expect(updateSearchResultsStub).to.have.been.called
     })
   })
+
+  describe(".handlePageChange", () => {
+    let updateSearchResultsStub
+
+    beforeEach(() => {
+      updateSearchResultsStub = sinon.stub(wrapper.instance(), "updateSearchResults")
+      wrapper.instance().handlePageChange({ selected: 2 })
+    })
+
+    afterEach(() => {
+      updateSearchResultsStub.restore()
+    })
+
+    it("changes query in state", () => {
+      expect(wrapper.state().page).to.eql(3)
+    })
+
+    it("updates search results after", () => {
+      expect(updateSearchResultsStub).to.have.been.called
+    })
+  })
 })
