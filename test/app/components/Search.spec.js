@@ -40,45 +40,43 @@ describe("<Search/>", () => {
     expect(wrapper.find("SearchResults").props().onSelect).to.eql(wrapper.instance().props.onSelect)
   })
 
-  describe(".handleSearch", () => {
+  context("search functions", () => {
     let updateSearchResultsStub
 
     beforeEach(() => {
       updateSearchResultsStub = sinon.stub(wrapper.instance(), "updateSearchResults")
-      wrapper.instance().handleSearch({ target: { value: "cat" } })
     })
 
     afterEach(() => {
       updateSearchResultsStub.restore()
     })
 
-    it("changes query in state", () => {
-      expect(wrapper.state().query).to.eql("cat")
+    describe(".handleSearch", () => {
+      beforeEach(() => {
+        wrapper.instance().handleSearch({ target: { value: "cat" } })
+      })
+
+      it("changes query in state", () => {
+        expect(wrapper.state().query).to.eql("cat")
+      })
+
+      it("updates search results after", () => {
+        expect(updateSearchResultsStub).to.have.been.called
+      })
     })
 
-    it("updates search results after", () => {
-      expect(updateSearchResultsStub).to.have.been.called
-    })
-  })
+    describe(".handlePageChange", () => {
+      beforeEach(() => {
+        wrapper.instance().handlePageChange({ selected: 2 })
+      })
 
-  describe(".handlePageChange", () => {
-    let updateSearchResultsStub
+      it("changes query in state", () => {
+        expect(wrapper.state().page).to.eql(3)
+      })
 
-    beforeEach(() => {
-      updateSearchResultsStub = sinon.stub(wrapper.instance(), "updateSearchResults")
-      wrapper.instance().handlePageChange({ selected: 2 })
-    })
-
-    afterEach(() => {
-      updateSearchResultsStub.restore()
-    })
-
-    it("changes query in state", () => {
-      expect(wrapper.state().page).to.eql(3)
-    })
-
-    it("updates search results after", () => {
-      expect(updateSearchResultsStub).to.have.been.called
+      it("updates search results after", () => {
+        expect(updateSearchResultsStub).to.have.been.called
+      })
     })
   })
 })
