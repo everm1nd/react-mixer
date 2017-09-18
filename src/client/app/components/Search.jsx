@@ -18,15 +18,26 @@ class Search extends React.Component {
     this.handlePageChange = this.handlePageChange.bind(this)
   }
 
-  handleSearch(event) {
-    const query = event.target.value
-    return Sound.search(query).then((foundSounds) => {
+  updateSearchResults() {
+    const query = this.state.query
+    const params = {
+      page: this.state.page
+    }
+    Sound.search(query, params).then((foundSounds) => {
       this.setState({ foundSounds })
     })
   }
 
+  handleSearch(event) {
+    this.setState({
+      query: event.target.value
+    }, this.updateSearchResults)
+  }
+
   handlePageChange(data) {
-    console.log("page", data.selected + 1)
+    this.setState({
+      page: data.selected + 1
+    }, this.updateSearchResults)
   }
 
   render() {

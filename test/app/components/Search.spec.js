@@ -40,19 +40,25 @@ describe("<Search/>", () => {
     expect(wrapper.find("SearchResults").props().onSelect).to.eql(wrapper.instance().props.onSelect)
   })
 
-  describe(".handleSearch", (done) => {
-    it("changes a foundSounds in state", () => {
+  describe(".handleSearch", () => {
+    let searchStub
+
+    beforeEach(() => {
       const searchResults = [
         new Sound({ name: "Little Dog", path: "wif.ogg" }),
         new Sound({ name: "Big Dog", path: "wooooooooof.ogg" })
       ]
       const promiseStub = sinon.stub().resolves(searchResults)()
-      const searchStub = sinon.stub(Sound, "search").returns(promiseStub)
+      searchStub = sinon.stub(Sound, "search").returns(promiseStub)
+    })
 
-      wrapper.instance().handleSearch({ target: { value: "dogs" } }).then(() => {
-        expect(wrapper.state()).to.include({ foundSounds: searchResults })
-        searchStub.restore()
-      }).then(done, done)
+    afterEach(() => {
+      searchStub.restore()
+    })
+
+    it("changes query in state", () => {
+      wrapper.instance().handleSearch({ target: { value: "cat" } })
+      expect(wrapper.state().query).to.eql("cat")
     })
   })
 })
