@@ -126,17 +126,25 @@ input[type='button'] {
 }
 
 .pagination ul {
-    display: inline-block;
-    padding-left: 15px;
-    padding-right: 15px;
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .pagination li {
-    display: inline-block;
-    cursor: pointer;
-    margin: 0 5px;
+  display: inline-block;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.pagination li.break {
+  cursor: default;
+}
+
+.pagination li.selected {
+  font-weight: bolder;
 }
 
 .pagination .break a {
-    cursor: default;
+  cursor: default;
 }
