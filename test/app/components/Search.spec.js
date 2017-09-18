@@ -41,24 +41,23 @@ describe("<Search/>", () => {
   })
 
   describe(".handleSearch", () => {
-    let searchStub
+    let updateSearchResultsStub
 
     beforeEach(() => {
-      const searchResults = [
-        new Sound({ name: "Little Dog", path: "wif.ogg" }),
-        new Sound({ name: "Big Dog", path: "wooooooooof.ogg" })
-      ]
-      const promiseStub = sinon.stub().resolves(searchResults)()
-      searchStub = sinon.stub(Sound, "search").returns(promiseStub)
+      updateSearchResultsStub = sinon.stub(wrapper.instance(), "updateSearchResults")
+      wrapper.instance().handleSearch({ target: { value: "cat" } })
     })
 
     afterEach(() => {
-      searchStub.restore()
+      updateSearchResultsStub.restore()
     })
 
     it("changes query in state", () => {
-      wrapper.instance().handleSearch({ target: { value: "cat" } })
       expect(wrapper.state().query).to.eql("cat")
+    })
+
+    it("updates search results after", () => {
+      expect(updateSearchResultsStub).to.have.been.called
     })
   })
 })
