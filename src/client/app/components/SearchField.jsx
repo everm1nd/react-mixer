@@ -23,7 +23,9 @@ class SearchField extends React.Component {
         />
         <div className="freesound-credits">
           powered by
-          <img src="../assets/freesound-logo.png" />
+          <a href="http://freesound.org/" target="blank">
+            <img src="../assets/freesound-logo.png" />
+          </a>
         </div>
       </div>
     )
