@@ -82,10 +82,14 @@ describe("<Search/>", () => {
 
   describe(".updateSearchResults", (done) => {
     let searchStub
-    const foundSounds = [ new Sound({ name: "Dog Barks" }) ]
+    const searchResults = {
+      page: 5,
+      totalPages: 15,
+      sounds: [ new Sound({ name: "Dog Barks" }) ]
+    }
 
     beforeEach(() => {
-      searchStub = sinon.stub(Sound, "search").resolves(foundSounds)
+      searchStub = sinon.stub(Sound, "search").resolves(searchResults)
       wrapper.setState({
         page: 5,
         query: "cats"
@@ -104,7 +108,7 @@ describe("<Search/>", () => {
 
     it("sets found sound in state.foundSounds", (done) => {
       wrapper.instance().updateSearchResults().then(() => {
-        expect(wrapper.state().foundSounds).to.eql(foundSounds)
+        expect(wrapper.state().foundSounds).to.eql(searchResults.sounds)
       }).then(done, done)
     })
   })

@@ -12,6 +12,7 @@ class Search extends React.Component {
     this.state = {
       query: "",
       page: 1,
+      pageCount: 1,
       foundSounds: []
     }
     this.handleSearch = this.handleSearch.bind(this)
@@ -23,14 +24,18 @@ class Search extends React.Component {
     const params = {
       page: this.state.page
     }
-    return Sound.search(query, params).then((foundSounds) => {
-      this.setState({ foundSounds })
+    return Sound.search(query, params).then((searchResults) => {
+      this.setState({
+        pageCount: searchResults.pageCount,
+        foundSounds: searchResults.sounds
+      })
     })
   }
 
   handleSearch(event) {
     this.setState({
-      query: event.target.value
+      query: event.target.value,
+      page: 1
     }, this.updateSearchResults)
   }
 
@@ -47,6 +52,7 @@ class Search extends React.Component {
         <SearchResults
             onPageChange={this.handlePageChange}
             onSelect={this.props.onSelect}
+            pageCount={this.state.pageCount}
             sounds={this.state.foundSounds}
         />
       </div>
