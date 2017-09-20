@@ -52,16 +52,22 @@ describe("<Search/>", () => {
     })
 
     describe(".handleSearch", () => {
-      beforeEach(() => {
-        wrapper.instance().handleSearch({ target: { value: "cat" } })
-      })
+      const doSearch = () => wrapper.instance().handleSearch({ target: { value: "cat" } })
 
       it("changes query in state", () => {
+        doSearch()
         expect(wrapper.state().query).to.eql("cat")
       })
 
       it("updates search results after", () => {
+        doSearch()
         expect(updateSearchResultsStub).to.have.been.called
+      })
+
+      it("resets page to 1", () => {
+        wrapper.setState({ page: 5 })
+        doSearch()
+        expect(wrapper.state().page).to.eql(1)
       })
     })
 
