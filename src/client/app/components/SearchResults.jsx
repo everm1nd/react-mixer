@@ -33,6 +33,7 @@ class SearchResults extends React.Component {
           containerClassName={"pagination"}
           nextLabel={">"}
           onPageChange={this.props.onPageChange}
+          pageCount={this.props.pageCount}
           previousLabel={"<"}
       />
     )
