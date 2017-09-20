@@ -14,6 +14,10 @@ describe("<SearchField/>", () => {
     expect(input).to.have.length(1)
   })
 
+  it("renders freesound credits block", () => {
+    expect(wrapper.find(".freesound-credits")).to.have.length(1)
+  })
+
   it("calls `onSearch` when Enter is pressed", () => {
     input.simulate("keyPress", {
       key: "Enter",

@@ -75,6 +75,20 @@ input[type='button'] {
   border: 1px solid #eee;
 }
 
+.freesound-credits {
+  text-align: right;
+  font-size: 10px;
+  color: #888;
+  margin-bottom: 9px;
+}
+
+.freesound-credits img {
+  height: 16px;
+  vertical-align: middle;
+  margin-top: -3px;
+  margin-left: 4px;
+}
+
 .search-field {
   margin-bottom: 10px;
   width: 100%;
