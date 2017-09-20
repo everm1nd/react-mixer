@@ -12,9 +12,12 @@ describe("Sound", () => {
   })
 
   describe(".search", () => {
-    it("parses result from freesound.org and return an array of Sounds", (done) => {
+    let adapterStub
+
+    beforeEach(() => {
       const searchResults = {
         data: {
+          count: 100,
           results: [
             {
               name: "Dog",
@@ -30,16 +33,31 @@ describe("Sound", () => {
           ]
         }
       }
-      const adapterStub = {
-        search: () => sinon.stub().resolves(searchResults)()
+      adapterStub = {
+        search: sinon.stub().resolves(searchResults)
       }
       Sound.__Rewire__("adapter", adapterStub)
+    })
+
+    afterEach(() => {
+      adapterStub.search.reset()
+    })
+
+    it("and parses result from freesound.org and return an array of Sounds", (done) => {
       Sound.search("dog").then((sounds) => {
-        expect(sounds).to.eql([
-          { name: "Dog", path: "woof.ogg", duration: 10, waveform: "woof.jpg" },
-          { name: "Cat", path: "meow.ogg", duration: 15, waveform: "meow.jpg" }
-        ])
+        expect(sounds).to.eql({
+          pageCount: 5,
+          sounds: [
+            { name: "Dog", path: "woof.ogg", duration: 10, waveform: "woof.jpg" },
+            { name: "Cat", path: "meow.ogg", duration: 15, waveform: "meow.jpg" }
+          ]
+        })
       }).then(done, done)
+    })
+
+    it("with query and params", () => {
+      Sound.search("dog", { page: 3 })
+      expect(adapterStub.search).to.have.been.calledWith("dog", { page: 3, page_size: 20 })
     })
 
     it("throws an error when query is not set", () => {

@@ -1,5 +1,6 @@
 import FreeSound from "models/adapters/FreeSound"
 
+const pageSize = 20
 const adapter = new FreeSound({})
 
 class Sound {
@@ -28,8 +29,15 @@ class Sound {
 
   static search(query, params = {}) {
     if (query === undefined) throw new Error("Search query should be set")
-    return adapter.search(query, params).then(
-      response => response.data.results.map(Sound.fromFreesound)
+    const mergedParams = Object.assign({}, { page_size: pageSize }, params)
+    return adapter.search(query, mergedParams).then(
+      response => {
+        const pageCount = Math.ceil(response.data.count / pageSize)
+        return {
+          pageCount,
+          sounds: response.data.results.map(Sound.fromFreesound)
+        }
+      }
     )
   }
 }
