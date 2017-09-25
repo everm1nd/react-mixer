@@ -1,7 +1,10 @@
 ## REACT MIXER 🎧🎚🎛
 [![Build Status](https://travis-ci.org/everm1nd/react-mixer.svg?branch=master)](https://travis-ci.org/everm1nd/react-mixer)
 
-#### [🔊 DEMO 🔊](https://react-mixer.herokuapp.com/)
+WebAudio-based sound mixer for FreeSoung.org sounds.
+
+#### DEMO
+You can find it [here](https://react-mixer.herokuapp.com/) 🔊.
 
 #### INSTALLATION
 
@@ -15,4 +18,11 @@ Run `yarn build` to build a repo. Run `yarn watch` to build and watch for change
 
 #### SERVING
 
-Open `./src/client/index.html` in your browser.
+Run `yarn serve` and navigate to http://localhost:8080. This will build, watch and serve data with `webpack-dev-server`.
+
+In production you can use `npm start`, which will serve data from `./src/client`. Manual prebuild is required.
+
+#### TEST
+
+Run `yarn test` or `yarn test:watch` to check code.
+Linting is possible with `yarn lint` and `yarn lint:fix`.
