@@ -14,7 +14,7 @@ describe("<App/>", function () {
   }
 
   it("renders a title", () => {
-    expect(wrapper.find("p").text()).to.eql("React Mixer")
+    expect(wrapper.find("h1").text()).to.eql("React Mixer")
   })
 
   it("renders all sounds from Sound.all() as separate channels", () => {

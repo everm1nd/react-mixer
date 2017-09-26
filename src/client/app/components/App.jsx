@@ -68,7 +68,7 @@ class App extends React.Component {
     const newChannelId = this.state.sounds.length + 1
     return (
       <div onKeyDown={this.handleKeyDown} tabIndex="0">
-        <p>React Mixer</p>
+        <h1>React Mixer</h1>
         <div className={classNames("channels", { "in-swap": this.state.inSwap })}>
           {this.channels()}
           <AddChannel
